@@ -32,3 +32,40 @@ html::-webkit-scrollbar-thumb{
     background:var(--gradient);
     border-radius:10px;
 }
+/* alignment of lists,menu and login in header */
+header{
+display: flex;
+align-items:center;
+justify-content: space-between;
+width:100%;
+background:none;
+top:0;
+left:0;
+z-index:1000;
+padding:1.6rem 7%;
+}
+header .logo{
+    color:black;
+    font-size:3rem;
+}
+header .logo img{
+    max-height:3.5rem;
+    max-width:4rem;
+    padding-left:1rem;
+    margin:0rem;
+}
+header .navbar ul {
+    list-style:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+header .navbar ul li{
+    margin:0 2rem;
+}
+header #login img{
+    max-height:3.5rem;
+    max-width:4rem;
+    padding-right:1rem;
+    margin:0rem;
+}
