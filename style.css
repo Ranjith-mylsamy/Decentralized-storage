@@ -11,6 +11,7 @@
     border:none;
     transition:all .2s linear;
     box-sizing: border-box;
+    text-decoration: none;
 }
 ::selection{
     background:white;
@@ -62,6 +63,10 @@ header .navbar ul {
 }
 header .navbar ul li{
     margin:0 2rem;
+}
+header .navbar ul li a{
+    font-size: 2rem;
+    
 }
 header #login img{
     max-height:3.5rem;
