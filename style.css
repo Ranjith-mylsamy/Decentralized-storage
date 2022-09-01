@@ -68,9 +68,13 @@ header .navbar ul li a{
     font-size: 2rem;
     
 }
+header .navbar ul li a.active{
+    
+}
 header #login img{
     max-height:3.5rem;
     max-width:4rem;
     padding-right:1rem;
     margin:0rem;
 }
+
