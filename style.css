@@ -9,11 +9,12 @@
     margin:0;
     padding:0;
     border:none;
+    outline: none;
     transition:all .2s linear;
     box-sizing: border-box;
     text-decoration: none;
 }
-::selection{
+*::selection{
     background:white;
     color:var(blue);
 }
@@ -33,17 +34,23 @@ html::-webkit-scrollbar-thumb{
     background:var(--gradient);
     border-radius:10px;
 }
+section {
+    min-height: 100vh;
+    padding:1rem 7%;
+}   
 /* alignment of lists,menu and login in header */
 header{
 display: flex;
 align-items:center;
 justify-content: space-between;
 width:100%;
-background:none;
+transition: .5s;
 top:0;
 left:0;
 z-index:1000;
 padding:1.6rem 7%;
+position:fixed;
+
 }
 header .logo{
     color:black;
@@ -66,10 +73,10 @@ header .navbar ul li{
 }
 header .navbar ul li a{
     font-size: 2rem;
-    
 }
-header .navbar ul li a.active{
-    
+header .navbar ul li a.active,
+header .navbar ul li a:hover{
+    color:#2A85F8;
 }
 header #login img{
     max-height:3.5rem;
@@ -77,4 +84,15 @@ header #login img{
     padding-right:1rem;
     margin:0rem;
 }
-
+.home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    background:url(./asset/blockchain.jpg)no-repeat;
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    position:relative;
+    text-align: center;
+}
