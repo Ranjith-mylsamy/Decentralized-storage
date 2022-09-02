@@ -119,3 +119,8 @@ header #login img{
     position:relative;
     text-align: center;
 }
+.home .hometext h1{
+    color:white;
+    position:absolute;
+    left:10%;
+}
