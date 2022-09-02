@@ -50,14 +50,13 @@ left:0;
 z-index:1000;
 padding:1.6rem 7%;
 position:fixed;
-
 }
 header .logo{
-    color:black;
+    color:white;
     font-size:3rem;
 }
 header .logo img{
-    max-height:3.5rem;
+    max-height:4rem;
     max-width:4rem;
     padding-left:1rem;
     margin:0rem;
@@ -73,16 +72,38 @@ header .navbar ul li{
 }
 header .navbar ul li a{
     font-size: 2rem;
+    color:white;
+    position: relative;
+}
+/*Effects on navbar*/
+header .navbar ul li a::after{
+    content: '';
+    width:0;
+    height:2px;
+    position:absolute;
+    bottom:-2px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#fff;
+    transition: width 0.3s;
+}
+header .navbar ul li a:hover::after{
+    width:50%;
 }
 header .navbar ul li a.active,
 header .navbar ul li a:hover{
     color:#2A85F8;
+}
+header #menu{
+    color:white;
+    font-size:1.5rem;
 }
 header #login img{
     max-height:3.5rem;
     max-width:4rem;
     padding-right:1rem;
     margin:0rem;
+    cursor: pointer;
 }
 .home{
     display: flex;
