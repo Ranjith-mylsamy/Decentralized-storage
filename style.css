@@ -177,3 +177,61 @@ header #login img{
         background-position: 2000px 0;
     }
 }
+
+
+/* media queries */
+@media (max-width:768px){
+    html{
+        font-size: 55%;
+    }
+    /*alignment of menu*/
+    header #menu{
+        display: block;
+    }
+    /*alignment of wrap between header*/
+    header .navbar{
+        position: fixed;
+        top:-120%;
+        left:0; 
+        width:100%;
+        background:#444;
+    }
+        /*wrap of menu*/
+        header .navbar ul{
+            flex-flow:column;
+            padding: 2rem 0;
+        }
+        header .navbar ul li{
+            margin:1.5rem 0;
+            text-align: center;
+            width: 100%;
+        }
+        /*font size design in wrap*/
+        header .navbar ul li a{
+            font-size: 2.5rem;
+            display: block;
+        }
+        header .navbar ul li a.active,
+        header .navbar ul li a:hover{
+            color:#2A85F8;
+        }
+    /*calling of javascript*/
+    .fa-times{
+        transform: rotate(90deg);
+    }
+    header .navbar.nav-toggle{
+        top:6.4rem;
+    }
+    .home p{
+        width:auto;
+    }
+    .home h1{
+        font-size:4rem;
+    }
+    .teacher p{
+        width:auto;
+    }
+    .contact .row .image{
+        display:none;
+    }
+}
