@@ -122,32 +122,32 @@ header #login img{
 .home .hometext h1{
     color:white;
     position:absolute;
-    left:15%;
-    top:38%;
+    left:10%;
+    top:35%;
     align-items:center;
     justify-content: left;
-    font-size: 12rem;
+    font-size: 14rem;
 }
 .home .hometext h2{
     color:white;
     position:absolute;
-    left:21%;
-    bottom:27%;
+    left:17.5%;
+    bottom:23%;
     align-items:center;
     justify-content: left;
-    font-size: 12rem;
+    font-size: 14rem;
 }
 .home .hometext2 p{
-    font-size:7.5rem;
+    font-size:9.5rem;
     position: absolute;
-    left:18.4%;
-    top:42%;
+    left:14.0%;
+    top:39%;
     color:white;
 }
 .home .hometext3 p{
-    font-size:7.5rem;
+    font-size:9.5rem;
     position: absolute;
-    left:24%;
-    bottom:31%;
+    left:21%;
+    bottom:28%;
     color:white;
 }
