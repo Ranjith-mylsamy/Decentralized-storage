@@ -99,6 +99,8 @@ header .navbar ul li a:hover{
 header #menu{
     color:white;
     font-size:1.5rem;
+    cursor:pointer;
+    display:none; 
 }
 header #login img{
     max-height:3.5rem;
@@ -106,6 +108,9 @@ header #login img{
     padding-right:1rem;
     margin:0rem;
     cursor: pointer;
+}
+body{
+    height:300rem;
 }
 .home{
     display: flex;
@@ -191,7 +196,7 @@ header #login img{
     /*alignment of wrap between header*/
     header .navbar{
         position: fixed;
-        top:-120%;
+        top:-120%;     
         left:0; 
         width:100%;
         background:#444;
@@ -221,17 +226,5 @@ header #login img{
     }
     header .navbar.nav-toggle{
         top:6.4rem;
-    }
-    .home p{
-        width:auto;
-    }
-    .home h1{
-        font-size:4rem;
-    }
-    .teacher p{
-        width:auto;
-    }
-    .contact .row .image{
-        display:none;
     }
 }
