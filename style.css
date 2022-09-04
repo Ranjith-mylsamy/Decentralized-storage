@@ -119,25 +119,35 @@ header #login img{
     position:relative;
     text-align: center;
 }
-.home .hometext{
+.home .hometext h1{
     color:white;
     position:absolute;
-    left:10%;
+    left:15%;
+    top:38%;
+    align-items:center;
+    justify-content: left;
+    font-size: 12rem;
+}
+.home .hometext h2{
+    color:white;
+    position:absolute;
+    left:15%;
+    bottom:31%;
     align-items:center;
     justify-content: left;
     font-size: 8rem;
 }
 .home .hometext2 p{
-    font-size:6rem;
+    font-size:7.5rem;
     position: absolute;
-    left:14%;
-    top:33%;
+    left:18.4%;
+    top:42%;
     color:white;
 }
 .home .hometext3 p{
     font-size:6rem;
     position: absolute;
-    left:14%;
+    left:17.5%;
     bottom:33%;
     color:white;
 }
