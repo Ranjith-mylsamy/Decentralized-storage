@@ -120,34 +120,60 @@ header #login img{
     text-align: center;
 }
 .home .hometext h1{
-    color:white;
     position:absolute;
     left:10%;
     top:35%;
     align-items:center;
     justify-content: left;
     font-size: 14rem;
+    color:transparent;
+    -webkit-text-stroke:1px #fff;
+    background: url(./asset/back.png);
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation:back 20s linear infinite;
 }
+
 .home .hometext h2{
-    color:white;
     position:absolute;
     left:17.5%;
     bottom:23%;
     align-items:center;
     justify-content: left;
     font-size: 14rem;
+    color:transparent;
+    -webkit-text-stroke:1px #fff;
+    background: url(./asset/back.png);
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation:back 20s linear infinite;
 }
 .home .hometext2 p{
     font-size:9.5rem;
     position: absolute;
     left:14.0%;
     top:39%;
-    color:white;
+    color:transparent;
+    -webkit-text-stroke:1px #fff;
+    background: url(./asset/back.png);
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation:back 20s linear infinite;
 }
 .home .hometext3 p{
     font-size:9.5rem;
     position: absolute;
     left:21%;
     bottom:28%;
-    color:white;
+    color:transparent;
+    -webkit-text-stroke:1px #fff;
+    background: url(./asset/back.png);
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation:back 20s linear infinite;
+}
+@keyframes back {
+    100%{
+        background-position: 2000px 0;
+    }
 }
