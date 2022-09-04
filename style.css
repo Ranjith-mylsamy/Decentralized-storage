@@ -125,5 +125,19 @@ header #login img{
     left:10%;
     align-items:center;
     justify-content: left;
-    font-size: 6rem;;
+    font-size: 8rem;
+}
+.home .hometext2 p{
+    font-size:6rem;
+    position: absolute;
+    left:14%;
+    top:33%;
+    color:white;
+}
+.home .hometext3 p{
+    font-size:6rem;
+    position: absolute;
+    left:14%;
+    bottom:33%;
+    color:white;
 }
