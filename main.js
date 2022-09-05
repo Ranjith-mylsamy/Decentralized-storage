@@ -1,10 +1,5 @@
-$(document).ready(function(){
-      $('#menu').click(function(){
-          $(this).toggleClass('fa-times');
-          $('.navbar').toggleClass('nav-toggle');
-      });
-      $(window).on('load scroll',function(){
-              $('#menu').removeClass('fa-times');
-              $('.navbar').removeClass('nav-toggle');
-              });
-      });
+// code to toggle navbar
+document.querySelector("#menu").addEventListener("click",()=>{
+    document.querySelector("nav").classList.toggle("nav-toggle");
+    document.querySelector("#menu").classList.toggle("fa-times");
+})
