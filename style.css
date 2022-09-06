@@ -98,20 +98,18 @@ header .navbar ul li a:hover{
 }
 header #menu{
     color:white;
-    font-size:1.5rem;
+    font-size:2rem;
     cursor:pointer;
     display:none; 
 }
 header #login img{
-    max-height:3.5rem;
-    max-width:4rem;
+    max-height:4.5rem;
+    max-width:4.7rem;
     padding-right:1rem;
     margin:0rem;
     cursor: pointer;
 }
-body{
-    height:300rem;
-}
+
 .home{
     display: flex;
     justify-content: center;
@@ -199,7 +197,7 @@ body{
         top:-120%;     
         left:0; 
         width:100%;
-        background:#444;
+        background:rgba(0, 0, 0, 0.207);
     }
         /*wrap of menu*/
         header .navbar ul{
