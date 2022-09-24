@@ -180,7 +180,37 @@ header #login img{
         background-position: 2000px 0;
     }
 }
-
+.btn{
+    font-weight:bold;
+    border-radius: 5rem;
+    text-transform: uppercase;
+    letter-spacing:1px;
+    color:white;
+    background:var(--gradient);
+    padding:0.5rem;
+    margin-top:1.5rem;
+    margin-bottom: 5rem;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    box-shadow: 0 .1rem .3rem rgba(255, 0, 0, 0.822);
+    cursor:pointer;
+}
+.btn::before{
+    content:'';
+    position:absolute;
+    top:-1rem;
+    left:-100%;
+    background: #fff9;
+    height:150%;
+    width:20%;
+    transform:rotate(25deg);
+    z-index:-1;
+}
+.btn:hover::before  {
+    transition:.5s linear;
+    left:120%;
+}
 
 /* media queries */
 @media (max-width:768px){

@@ -1,16 +1,87 @@
 @import url('https://fonts.googleapis.com/css2?family=Khand:wght@300&display=swap');
-:root{
-    --blue:#2A85F8;
-    --blue2:#010B2E;
-    --gradient:linear-gradient(360deg, hsla(213, 94%, 57%, 1) 0%, hsla(213, 94%, 57%, 1) 14%, hsla(227, 96%, 9%, 1) 81%);
+body{
+    background-color:#f6f5f7;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    height:100vh;
+    margin:0 auto;
 }
-*{
-    font-family:'Khand', sans-serif;
-    margin:0;
-    padding:0;
-    border:none;
-    outline: none;
-    transition:all .2s linear;
-    box-sizing: border-box;
-    text-decoration: none;
+.container{
+    background-color: white;
+    border-radius: 10px;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 14px 28px rgba(0,0,0,0.25),
+                0px 14px 10px rgba(0,0,0,0.22);
+}
+.form-container{
+    position:absolute;
+    top:0%;
+    height:100%;
+}
+.sign-up-container{
+    left:0;
+    width:50%;
+    z-index:1;
+    opacity:0;
+}
+form{
+    background-color: white;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding:0 50px;
+    height:100%;
+    text-align: center;
+}
+h1{
+    font-weight: bold;
+}
+.social-container{
+    margin:20px;
+}
+.social-container a{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin:0 5px;
+    width:30px;
+    height:40px;
+}
+a{
+   color:#333;
+   font-size:2.5rem;
+   margin:15px;
+}
+span{
+    font-size: 12px;
+}
+.form-container form .box{
+    width:100%;
+    border-radius: 10px;
+    border:.2rem solid #666;
+    font-size:1.6rem;
+    color: #333;
+    margin:0.5rem;
+    padding:0.5rem;
+}
+/*input box text adjustment*/
+.form-container form .box::placeholder{
+    font-style: italic;
+}
+/*underline text adjustment*/
+.form-container form .box:focus{
+    border: 1px solid;
+    border-radius:10px;
+    border-color:rgb(255, 0, 0, 0.822);
+}
+.sign-in-container{
+    left:0;
+    width:50%;
+    z-index:2;
 }
