@@ -11,6 +11,11 @@ body{
     align-items: center;
     height:100vh;
     margin:0 auto;
+    background:url(./asset/sample5.jpg)no-repeat;
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    position:relative;
 }
 .container{
     background-color: white;
@@ -27,6 +32,7 @@ body{
     position:absolute;
     top:0%;
     height:100%;
+    transition:all 0.8s ease-in-out;
 }
 .sign-up-container{
     left:0;
@@ -98,10 +104,11 @@ span{
     height:100%;
     overflow:hidden;
     z-index:100;
+    transition:all 0.6s ease-in-out;
 }
 .overlay{
     background-color:var(--blue);
-    background: linear-gradient(to right,var(--blue),var(--blue2));
+    background: linear-gradient(to bottom,var(--blue),var(--blue2));
     background-repeat: no-repeat;
     background-size:cover;
     background-position: 0 0;
@@ -111,6 +118,7 @@ span{
     width:200%;
     height:100%;
     transform: translateX(0);
+    transition:all 0.6s ease-in-out;
 }
 .overlay-panel{
     position: absolute;
