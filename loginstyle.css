@@ -3,7 +3,6 @@
     --blue:#2A85F8;
     --blue2:#010B2E;
     --gradient:linear-gradient(360deg, hsla(213, 94%, 57%, 1) 0%, hsla(213, 94%, 57%, 1) 14%, hsla(227, 96%, 9%, 1) 81%);
-    --gradient2:
 }
 body{
     background-color:#f6f5f7;
@@ -84,7 +83,7 @@ span{
 .form-container form .box:focus{
     border: 1px solid;
     border-radius:10px;
-    border-color:rgb(255, 0, 0, 0.822);
+    border-color:rgba(0, 34, 255, 0.822);
 }
 .sign-in-container{
     left:0;
@@ -130,4 +129,36 @@ span{
 }
 .overlay-right{
     right:0;
+    transform: translateX(0);
+}
+.container.right-panel-active .sign-in-container{
+    transform: translateX(100%);
+}
+.container.left-panel-active .sign-in-container{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation :slide 0.6s;
+}
+@keyframes slide{
+    0%,49.99%{
+       opacity:0;
+       z-index:1; 
+    }
+    50%,100%{
+        opacity:1;
+        z-index:5;
+    }
+}
+.container.right-panel-active .overlay-container{
+    transform: translateX(-100%);
+}
+.container.right-panel-active .overlay{
+    transform:translateX(50%);
+}
+.container.right-panel-active .overlay-left{
+    transform: translateX(0);
+}
+.container.right-panel-active .overlay-right{
+    transform: translateX(20%);
 }

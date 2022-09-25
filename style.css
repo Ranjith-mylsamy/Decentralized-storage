@@ -3,6 +3,7 @@
     --blue:#2A85F8;
     --blue2:#010B2E;
     --gradient:linear-gradient(360deg, hsla(213, 94%, 57%, 1) 0%, hsla(213, 94%, 57%, 1) 14%, hsla(227, 96%, 9%, 1) 81%);
+    --gradient2:linear-gradient(90deg,#009ffd, #2a2a72);
 }
 *{
     font-family:'Khand', sans-serif;
@@ -182,12 +183,13 @@ header #login img{
 }
 .btn{
     font-weight:bold;
-    border-radius: 5rem;
-    text-transform: uppercase;
+    font-size:1.5rem;
+    border-radius: 2rem;
+    text-transform: capitalize;
     letter-spacing:1px;
     color:white;
-    background:var(--gradient);
-    padding:0.5rem;
+    background:var(--gradient2);
+    padding:0.8rem 2rem 0.8rem 2rem; /*top right bottom left*/
     margin-top:1.5rem;
     margin-bottom: 5rem;
     position: relative;
@@ -195,6 +197,9 @@ header #login img{
     overflow: hidden;
     box-shadow: 0 .1rem .3rem rgba(255, 0, 0, 0.822);
     cursor:pointer;
+}
+.btn:active{
+    transform: scale(.85);
 }
 .btn::before{
     content:'';
