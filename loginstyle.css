@@ -134,7 +134,7 @@ span{
 .container.right-panel-active .sign-in-container{
     transform: translateX(100%);
 }
-.container.left-panel-active .sign-in-container{
+.container.right-panel-active .sign-up-container{
     transform: translateX(100%);
     opacity: 1;
     z-index: 5;
