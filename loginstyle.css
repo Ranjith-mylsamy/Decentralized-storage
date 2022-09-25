@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Khand:wght@300&display=swap');
+:root{
+    --blue:#2A85F8;
+    --blue2:#010B2E;
+    --gradient:linear-gradient(360deg, hsla(213, 94%, 57%, 1) 0%, hsla(213, 94%, 57%, 1) 14%, hsla(227, 96%, 9%, 1) 81%);
+    --gradient2:
+}
 body{
     background-color:#f6f5f7;
     display:flex;
@@ -84,4 +90,44 @@ span{
     left:0;
     width:50%;
     z-index:2;
+}
+.overlay-container{
+    position:absolute;
+    top:0;
+    left:50%;
+    width:50%;
+    height:100%;
+    overflow:hidden;
+    z-index:100;
+}
+.overlay{
+    background-color:var(--blue);
+    background: linear-gradient(to right,var(--blue),var(--blue2));
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: 0 0;
+    color:white;
+    position:relative;
+    left:-100%;
+    width:200%;
+    height:100%;
+    transform: translateX(0);
+}
+.overlay-panel{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width:50%;
+    height:100%;
+    top:0;
+    align-items: center;
+    justify-content: center;
+    transform:translateX(0);
+    padding:0rem 2.5rem;
+}
+.overlay-left{
+    transform: translateX(-20%);
+}
+.overlay-right{
+    right:0;
 }
