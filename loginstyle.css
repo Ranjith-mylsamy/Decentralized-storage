@@ -83,7 +83,7 @@ span{
 }
 /*input box text adjustment*/
 .form-container form .box::placeholder{
-    font-style: italic;
+    font-style:normal;
 }
 /*underline text adjustment*/
 .form-container form .box:focus{
