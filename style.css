@@ -359,7 +359,7 @@ header #login img{
     height:400px;
     background: linear-gradient(#ede342,#ff51eb);
     border-radius: 50%;
-    transform:translate(-350px,-120px);
+    transform:translate(-450px,220px);
 }
 .versus-upload::after{
     content:'';
@@ -368,11 +368,10 @@ header #login img{
     height: 350px;
     background:linear-gradient(#f7a2a1,#ffed00);
     border-radius: 50%;
-    transform: translate(250px,150px);
+    transform: translate(400px,-210px);
 }
 .versus-upload .content{
     display:flex;
-    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 }   
@@ -389,8 +388,19 @@ header #login img{
     border-right:1px solid rgba(255,255,255,0.2);
     border-bottom:1px solid rgba(255,255,255,0.2);
     border-radius:10px;
-    text-align: center;
     backdrop-filter: blur(25px);
+}
+.versus-upload img {
+    height:10vh;
+}
+.versus-upload .content h3{
+    color: white;
+    font-size:4rem;
+    text-decoration:underline;
+}
+.versus-upload .content ul li {
+    color: white;
+
 }
 /* media queries */
 @media (max-width:768px){
