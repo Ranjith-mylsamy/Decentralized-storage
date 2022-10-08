@@ -259,6 +259,36 @@ header #login img{
     color:white;
     text-shadow: .03em .03em 0 hsla(230,40%,50%,1);
 }
+.upload {
+    position: relative;
+    min-height:100vh;
+    overflow: hidden;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.upload::before{
+    content:'';
+    position:absolute;
+    width:400px;
+    height:400px;
+    background: linear-gradient(#ffc107,#e91263);
+    border-radius: 50%;
+    transform:translate(-350px,-120px);
+}
+
+.upload::after{
+    content:'';
+    position:absolute;
+    width:350px;
+    height: 350px;
+    background:linear-gradient(#2196f3,#31ff38);
+    border-radius: 50%;
+    transform: translate(250px,150px);
+}
+.upload h1{
+    color:white;
+}
 /* media queries */
 @media (max-width:768px){
     html{
