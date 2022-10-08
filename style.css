@@ -266,6 +266,8 @@ header #login img{
     display:flex;
     justify-content: center;
     align-items: center;
+    display:flex;
+    flex-wrap: wrap;
 }
 .upload::before{
     content:'';
@@ -286,17 +288,100 @@ header #login img{
     border-radius: 50%;
     transform: translate(250px,150px);
 }
-.upload h1{
+.heading {
     color:white;
-    z-index:1;
+    padding:1rem;
+    font-size: 7rem;
+    z-index: 10;
+    width:100%;
+    text-align: center;
+    position: absolute;
+    top:32%;
+    filter:drop-shadow(0 0 20px #fff) drop-shadow(0 0 50px #fff);
 }
-.en_container{
+.upload .upload-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding:3rem;
+    margin:2rem;
+    position: absolute;
+    top:42%;
+}
+.upload .en_container{
     position: relative;
-    min-width:100px;
-    min-height: 80px;
+    min-width:200px;
+    min-height:120px;
     background: rgba(255, 255, 255, 0.1);
     padding:1rem;
     margin:2rem;
+    z-index:10;
+    box-shadow:0 25px 45px rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.5);
+    border-right:1px solid rgba(255,255,255,0.2);
+    border-bottom:1px solid rgba(255,255,255,0.2);
+    border-radius:10px;
+    text-align: center;
+    backdrop-filter: blur(25px);
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.upload .en_container p{
+    color:white;
+    z-index:1;
+    text-align:center;
+    margin-top:-0.5rem;
+    font-size:2rem;
+}
+.upload .en_container i{
+    color: white;
+    font-size:2rem;
+    margin:1.5rem;
+}
+.versus-upload {
+    position: relative;
+    min-height:100vh;
+    overflow: hidden;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    flex-wrap: wrap;
+}
+.versus-upload::before{
+    content:'';
+    position:absolute;
+    width:400px;
+    height:400px;
+    background: linear-gradient(#ffc107,#e91263);
+    border-radius: 50%;
+    transform:translate(-350px,-120px);
+}
+.versus-upload::after{
+    content:'';
+    position:absolute;
+    width:350px;
+    height: 350px;
+    background:linear-gradient(#2196f3,#31ff38);
+    border-radius: 50%;
+    transform: translate(250px,150px);
+}
+.versus-upload .content{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}   
+.versus-upload .content{
+    position: relative;
+    min-width:300px;
+    min-height:400px;
+    background: rgba(255, 255, 255, 0.1);
+    padding:1rem;
+    margin:5rem;
     z-index:10;
     box-shadow:0 25px 45px rgba(255,255,255,0.1);
     border:1px solid rgba(255,255,255,0.5);
