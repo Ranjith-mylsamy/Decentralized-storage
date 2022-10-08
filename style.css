@@ -282,16 +282,16 @@ header #login img{
 .upload::after{
     content:'';
     position:absolute;
-    width:350px;
-    height: 350px;
+    width:380px;
+    height: 380px;
     background:linear-gradient(#2196f3,#31ff38);
     border-radius: 50%;
-    transform: translate(250px,150px);
+    transform: translate(320px,150px);
 }
 .heading {
     color:white;
     padding:1rem;
-    font-size: 7rem;
+    font-size: 6rem;
     z-index: 10;
     width:100%;
     text-align: center;
@@ -311,7 +311,7 @@ header #login img{
 }
 .upload .en_container{
     position: relative;
-    min-width:200px;
+    min-width:210px;
     min-height:120px;
     background: rgba(255, 255, 255, 0.1);
     padding:1rem;
@@ -333,12 +333,13 @@ header #login img{
     color:white;
     z-index:1;
     text-align:center;
-    margin-top:-0.5rem;
-    font-size:2rem;
+    font-size:2.5rem;
+    font-weight: bolder;
+
 }
 .upload .en_container i{
     color: white;
-    font-size:2rem;
+    font-size:2.5rem;
     margin:1.5rem;
 }
 .versus-upload {
@@ -356,7 +357,7 @@ header #login img{
     position:absolute;
     width:400px;
     height:400px;
-    background: linear-gradient(#ffc107,#e91263);
+    background: linear-gradient(#ede342,#ff51eb);
     border-radius: 50%;
     transform:translate(-350px,-120px);
 }
@@ -365,7 +366,7 @@ header #login img{
     position:absolute;
     width:350px;
     height: 350px;
-    background:linear-gradient(#2196f3,#31ff38);
+    background:linear-gradient(#f7a2a1,#ffed00);
     border-radius: 50%;
     transform: translate(250px,150px);
 }
