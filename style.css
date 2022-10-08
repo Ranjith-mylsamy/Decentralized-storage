@@ -329,6 +329,12 @@ header #login img{
     align-items: center;
     justify-content: center;
 }
+.upload .heading i{
+    color: white;
+    font-size:5rem;
+    margin:1.5rem;
+    transform: rotate(180deg);
+}
 .upload .en_container p{
     color:white;
     z-index:1;
@@ -372,8 +378,8 @@ header #login img{
 }
 .versus-upload .content{
     display:flex;
-    justify-content: center;
     flex-wrap: wrap;
+    flex-direction: column;
 }   
 .versus-upload .content{
     position: relative;
@@ -397,10 +403,14 @@ header #login img{
     color: white;
     font-size:4rem;
     text-decoration:underline;
+    text-align: center;
 }
-.versus-upload .content ul li {
-    color: white;
-
+.versus-upload .content .list{
+    margin:1rem;
+}
+.versus-upload h2,h4,p{
+    font-size: 2rem;
+    color:white;
 }
 /* media queries */
 @media (max-width:768px){
