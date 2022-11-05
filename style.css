@@ -49,6 +49,11 @@ section {
     align-items: center;
     flex-direction: column;
 }
+.container .ipfs{
+    font-size: 4rem;
+    margin-bottom: 40px;
+    color: white;
+}
 .sec-02-content{
     position:relative;
     width:1150px;
@@ -58,9 +63,10 @@ section {
 }  
 .sec-02-content .image{
     position: relative;
-    width:800px;
+    width:600px;
     height:400px;
     overflow: hidden;
+    display:flex;
 } 
 .sec-02-content .image img{
     z-index: 100;
@@ -78,15 +84,73 @@ section {
     background:rgba(255,255,255,0.1);
     backdrop-filter: blur(20px);
     padding: 40px;
-    max-width: 400px;
+    max-width: 380px;
     border:1px solid rgba(255,255,255,0.1);
     border-radius:10px;
-    transform:translate(-80px,50px);
+    transform:translate(-80px,10px);
 }
 .sec-02-content .textbox h1{
     font-size: 2rem;
     margin-bottom:10px;
     color:white;
+}
+.container .chooseus {
+    color:white;
+    font-size:4rem;
+    margin-bottom: 10px;
+}
+.sec-03-content{
+    position:relative;
+    width:1150px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}  
+.sec-03-content .image{
+    position: relative;
+    width:600px;
+    height:400px;
+    overflow: hidden;
+    display:flex;
+} 
+.sec-03-content .image img{
+    z-index: 100;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.info{
+    width:600px;
+    margin-left:50px;
+}
+.info span{
+    color:blue;
+    font-size:4rem;
+}
+.info .web3,.web2{
+    color:blue;
+    font-weight: bolder;
+}
+.info .web2:hover{
+    text-decoration: underline;
+}
+.info .web:hover{
+    text-decoration: underline;
+}
+.store-now{
+    color:white;
+    font-weight: bolder;
+    font-size: 4rem;
+    margin:1rem;
+    padding:1rem;
+}
+.store-now .btn{
+    font-size: 4rem;
+    margin:3rem;
 }
 /* alignment of lists,menu and login in header */
 body{
@@ -243,7 +307,7 @@ header #login img{
     background:var(--gradient2);
     padding:0.8rem 2rem 0.8rem 2rem; /*top right bottom left*/
     margin-top:1.5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 1.5rem;
     position: relative;
     z-index: 0;
     overflow: hidden;
