@@ -5,6 +5,8 @@
     --gradient:linear-gradient(360deg, hsla(213, 94%, 57%, 1) 0%, hsla(213, 94%, 57%, 1) 14%, hsla(227, 96%, 9%, 1) 81%);
     --gradient2:linear-gradient(90deg,#009ffd, #2a2a72);
     --buttonclr:#1e9bff;
+    --buttonclr2:#ff1867;
+    --buttonclr3:#6eff3e;
 }
 *{
     font-family:'Khand', sans-serif;
