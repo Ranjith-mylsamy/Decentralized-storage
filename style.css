@@ -52,11 +52,56 @@ section {
     align-items: center;
     flex-direction: column;
 }
-.container .ipfs{
+.container .ipfs,.reveal{
     font-size: 4rem;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     color: white;
+    display: flex;
+    flex-direction: row;
 }
+.container .ipfs {
+    display:flex;
+    overflow:hidden;
+    white-space:nowrap;
+    color:var(--buttonclr);
+  }
+  
+  .container .ipfs {
+    animation: showup 7s infinite;
+  }
+  
+  .container .reveal {
+    width:0px;
+    animation: reveal 7s infinite;
+  }
+  
+  .container .reveal span {
+    margin-left:-355px;
+    animation: slidein 7s infinite;
+  }
+  
+  @keyframes showup {
+      0% {opacity:0;}
+      20% {opacity:1;}
+      80% {opacity:1;}
+      100% {opacity:0;}
+  }
+  
+  @keyframes slidein {
+      0% { margin-left:-800px; }
+      20% { margin-left:-800px; }
+      35% { margin-left:10px; }
+      100% { margin-left:10px; }
+  }
+  
+  @keyframes reveal {
+      0% {opacity:0;width:0px;}
+      20% {opacity:1;width:0px;}
+      30% {width:385px;}
+      80% {opacity:1;}
+      100% {opacity:0;width:385px;}
+  }
+
 .sec-02-content{
     position:relative;
     width:1150px;
