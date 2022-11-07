@@ -100,7 +100,8 @@ section {
 .container .chooseus {
     color:white;
     font-size:4rem;
-    margin-bottom: 10px;
+    margin-top: 3rem;
+    margin-bottom: 20px;
 }
 .sec-03-content{
     position:relative;
@@ -129,26 +130,30 @@ section {
 .info{
     width:600px;
     margin-left:50px;
+    line-height: 4rem;
+}
+.info p{
+    font-size: 2.5rem;
 }
 .info span{
-    color:blue;
+    color:var(--buttonclr2);
     font-size:4rem;
 }
 .info .web3,.web2{
-    color:blue;
+    color:var(--buttonclr);
     font-weight: bolder;
 }
 .info .web2:hover{
     text-decoration: underline;
 }
-.info .web:hover{
+.info .web3:hover{
     text-decoration: underline;
 }
 .store-now{
     color:white;
     font-weight: bolder;
     font-size: 4rem;
-    margin:1rem;
+    margin:2rem;
     padding:1rem;
 }
 .store-now .button
