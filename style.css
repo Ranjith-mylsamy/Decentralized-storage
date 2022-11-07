@@ -57,7 +57,7 @@ section {
     margin-bottom: 10px;
     color: white;
     display: flex;
-    flex-direction: row;
+    flex-direction: row;    
 }
 .container .ipfs {
     display:flex;
@@ -183,6 +183,7 @@ section {
 .info span{
     color:var(--buttonclr2);
     font-size:4rem;
+    font-weight: bolder;
 }
 .info .web3,.web2{
     color:var(--buttonclr);
