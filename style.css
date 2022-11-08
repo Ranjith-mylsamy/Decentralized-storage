@@ -184,6 +184,7 @@ section {
     color:var(--buttonclr2);
     font-size:4rem;
     font-weight: bolder;
+    filter:drop-shadow(0 0 20px var(--buttonclr2)) drop-shadow(0 0 50px var(--buttonclr2));
 }
 .info .web3,.web2{
     color:var(--buttonclr);
