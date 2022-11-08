@@ -267,6 +267,89 @@ section {
     width:20px;
     left:80%;
 }
+.contact-heading{
+    color:white;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    padding: 1rem;
+    font-size: 6rem;
+    width:8%;
+    height:auto;
+    text-align:center;
+    position: relative;
+    filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 50px #fff);
+    display: flex;
+    z-index: 1;
+    right:25%;
+    margin:1rem;
+    padding:1rem;
+}
+.sec-04 .row{
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    display: flex;
+    width:50%;
+    position: relative;
+    right:20%;
+}
+.sec-04 .row form{
+    flex:1 1 50rem;
+    background: #222;
+    padding:2rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    align-items: flex-start;
+    border-radius: 10px;
+}
+.sec-04 .row form .box{
+    height:5rem;
+    width:49%;
+    border:.1rem solid #eee;
+    padding:0 1rem;
+    margin:1rem 0;
+    font-size:1.7rem;
+    color:#fff;
+    background:none;
+    text-transform: none;
+    border-radius: 10px;
+}
+.sec-04 .row form .box:focus{
+    border:1px solid;
+    border-radius: 15px;
+    border-color:rgba(55,34,241,0.822);
+}
+.sec-4 .row form .box::placeholder {
+    text-transform: capitalize ;
+    font-style: italic;
+    padding:1rem;
+}
+.sec-04 .row form .box-address{
+    height:15rem;
+    padding: 1rem;
+    resize:none;
+    width:100%;
+    border-radius: 10px;
+    background:none;
+    border:.1rem solid #eee;
+}
+.sec-04 .row form .box-address:focus {
+    border: 1px solid;
+    border-radius: 15px;
+    border-color: rgba(55, 34, 241, 0.822);
+}
+.sec-04 .row form .box-address::placeholder {
+    text-transform: capitalize ;
+    font-style: italic;
+    font-size:2rem;
+}
+.sec-04 .row form .btn:hover{
+    color: black;
+    background:linear-gradient (#009ffd, #2a2a72);
+}
+
 /* alignment of lists,menu and login in header */
 body{
    background:black;
