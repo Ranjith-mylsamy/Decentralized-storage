@@ -45,6 +45,224 @@ section {
     justify-content: center;
     align-items: center;
 }
+/* alignment of lists,menu and login in header */
+body{
+   background:black;
+}
+header{
+display: flex;
+align-items:center;
+justify-content: space-between;
+width:100%;
+transition: .5s;
+top:0;
+left:0;
+z-index:1000;
+padding:1.6rem 7%;
+position:fixed;
+}
+header .logo{
+    color:white;
+    font-size:3rem;
+}
+header .logo img{
+    max-height:4rem;
+    max-width:4rem;
+    margin:2px;
+}
+header .logo span{
+    position:absolute;
+}
+header .navbar ul {
+    list-style:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+header .navbar ul li{
+    margin:0 2rem;
+}
+header .navbar ul li a{
+    font-size: 2.5rem;
+    color:white;
+    position: relative;
+}
+/*Effects on navbar*/
+header .navbar ul li a::after{
+    content: '';
+    width:0;
+    height:2px;
+    position:absolute;
+    bottom:-2px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#fff;
+    transition: width 0.3s;
+}
+header .navbar ul li a:hover::after{
+    width:50%;
+}
+header .navbar ul li a.active,
+header .navbar ul li a:hover{
+    color:#2A85F8;
+}
+header #menu{
+    color:white;
+    font-size:2rem;
+    cursor:pointer;
+    display:none; 
+}
+header #login img{
+    max-height:4.5rem;
+    max-width:4.7rem;
+    padding-right:1rem;
+    margin:0rem;
+    cursor: pointer;
+}
+.home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    background:url(./asset/blockchain.jpg)no-repeat;
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    position:relative;
+    text-align: center;
+}
+.home .hometext h1{
+    position:absolute;
+    left:10%;
+    top:35%;
+    align-items:center;
+    justify-content: left;
+    font-size: 14rem;
+    color:transparent;
+    -webkit-text-stroke:1px #fff;
+    background: url(./asset/back.png);
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation:back 20s linear infinite;
+}
+.home .hometext h2{
+    position:absolute;
+    left:17.5%;
+    bottom:23%;
+    align-items:center;
+    justify-content: left;
+    font-size: 14rem;
+    color:transparent;
+    -webkit-text-stroke:1px #fff;
+    background: url(./asset/back.png);
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation:back 20s linear infinite;
+}
+.home .hometext2 p{
+    font-size:9.5rem;
+    position: absolute;
+    left:14.0%;
+    top:39%;
+    color:transparent;
+    -webkit-text-stroke:1px #fff;
+    background: url(./asset/back.png);
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation:back 20s linear infinite;
+}
+.home .hometext3 p{
+    font-size:9.5rem;
+    position: absolute;
+    left:21%;
+    bottom:28%;
+    color:transparent;
+    -webkit-text-stroke:1px #fff;
+    background: url(./asset/back.png);
+    -webkit-background-clip: text;
+    background-position: 0 0;
+    animation:back 20s linear infinite;
+}
+@keyframes back {
+    100%{
+        background-position: 2000px 0;
+    }
+}
+.btn{
+    font-weight:bold;
+    font-size:1.5rem;
+    border-radius: 2rem;
+    text-transform: capitalize;
+    letter-spacing:1px;
+    color:white;
+    background:var(--gradient2);
+    padding:0.8rem 2rem 0.8rem 2rem; /*top right bottom left*/
+    margin-top:1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    box-shadow: 0 .1rem .3rem rgba(255, 0, 0, 0.822);
+    cursor:pointer;
+}
+.btn:active{
+    transform: scale(.85);
+}
+.btn::before{
+    content:'';
+    position:absolute;
+    top:-1rem;
+    left:-100%;
+    background: #fff9;
+    height:150%;
+    width:20%;
+    transform:rotate(25deg);
+    z-index:-1;
+}
+.btn:hover::before  {
+    transition:.5s linear;
+    left:120%;
+}
+.banner{
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.banner video{
+    object-fit:fill;
+    height:100%;
+    width:100%;
+    position:absolute;
+    top:100;
+    left:0;
+    pointer-events: none;
+}
+.banner .content
+{
+    z-index:1;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    margin:1rem;
+    padding:1rem;
+}
+.banner .content h1{
+    font-size:8rem;
+    justify-content: center;
+    text-align: center;
+    color:white;
+    text-shadow: .03em .03em 0 hsla(230,40%,50%,1);
+}
+.banner .content p{
+    font-size:3rem;
+    justify-content: center;
+    text-align: center;
+    color:white;
+    text-shadow: .03em .03em 0 hsla(230,40%,50%,1);
+}
 .container{
     position: relative;
     display:flex;
@@ -268,21 +486,23 @@ section {
     left:80%;
 }
 .contact-heading{
-    color:white;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
     padding: 1rem;
-    font-size: 6rem;
-    width:8%;
+    width:auto;
     height:auto;
     text-align:center;
     position: relative;
-    filter: drop-shadow(0 0 20px #fff) drop-shadow(0 0 50px #fff);
-    display: flex;
     z-index: 1;
     right:25%;
     margin:1rem;
     padding:1rem;
+}
+.contact-heading p{
+    color:white;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 3.5rem;
+    font-weight: bolder;
+    filter:drop-shadow(0 0 20px #fff) drop-shadow(0 0 50px #fff);
 }
 .sec-04 .row{
     align-items: center;
@@ -295,7 +515,8 @@ section {
 }
 .sec-04 .row form{
     flex:1 1 50rem;
-    background: #222;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
     padding:2rem;
     display: flex;
     justify-content: space-between;
@@ -303,6 +524,12 @@ section {
     margin-top: 3rem;
     align-items: flex-start;
     border-radius: 10px;
+    box-shadow:0 25px 45px rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.5);
+    border-right:1px solid rgba(255,255,255,0.2);
+    border-bottom:1px solid rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(25px);
 }
 .sec-04 .row form .box{
     height:5rem;
@@ -315,16 +542,14 @@ section {
     background:none;
     text-transform: none;
     border-radius: 10px;
+    text-transform:uppercase;
+    font-weight: bolder;
+    padding:1rem;
 }
 .sec-04 .row form .box:focus{
     border:1px solid;
     border-radius: 15px;
     border-color:rgba(55,34,241,0.822);
-}
-.sec-4 .row form .box::placeholder {
-    text-transform: capitalize ;
-    font-style: italic;
-    padding:1rem;
 }
 .sec-04 .row form .box-address{
     height:15rem;
@@ -334,6 +559,9 @@ section {
     border-radius: 10px;
     background:none;
     border:.1rem solid #eee;
+    text-transform:uppercase;
+    font-weight: bolder;
+    padding:1rem;
 }
 .sec-04 .row form .box-address:focus {
     border: 1px solid;
@@ -348,6 +576,12 @@ section {
 .sec-04 .row form .btn:hover{
     color: black;
     background:linear-gradient (#009ffd, #2a2a72);
+}
+.sec-04 .row .store-now .button{
+    color:white;
+    font-weight: bolder;
+    font-size: 3rem;
+    display: flex;
 }
 .cube-container{
     position: relative;
@@ -397,7 +631,7 @@ section {
 .cube-container .cube div span:hover{
     transition: 0s;
     background:#ef4149;
-    filter: drop-shadow (00 30px #ef4149)
+    filter: drop-shadow (00 30px #ef4149);
     }
 .cube-container .cube div span::before{
     content: '';
@@ -427,226 +661,6 @@ section {
 .cube-container .cube div span:hover::after{
     transition:0s;
     background: #f14e55;
-}
-/* alignment of lists,menu and login in header */
-body{
-   background:black;
-}
-header{
-display: flex;
-align-items:center;
-justify-content: space-between;
-width:100%;
-transition: .5s;
-top:0;
-left:0;
-z-index:1000;
-padding:1.6rem 7%;
-position:fixed;
-}
-header .logo{
-    color:white;
-    font-size:3rem;
-}
-header .logo img{
-    max-height:4rem;
-    max-width:4rem;
-    margin:2px;
-}
-header .logo span{
-    position:absolute;
-}
-header .navbar ul {
-    list-style:none;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-header .navbar ul li{
-    margin:0 2rem;
-}
-header .navbar ul li a{
-    font-size: 2.5rem;
-    color:white;
-    position: relative;
-}
-/*Effects on navbar*/
-header .navbar ul li a::after{
-    content: '';
-    width:0;
-    height:2px;
-    position:absolute;
-    bottom:-2px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#fff;
-    transition: width 0.3s;
-}
-header .navbar ul li a:hover::after{
-    width:50%;
-}
-header .navbar ul li a.active,
-header .navbar ul li a:hover{
-    color:#2A85F8;
-}
-header #menu{
-    color:white;
-    font-size:2rem;
-    cursor:pointer;
-    display:none; 
-}
-header #login img{
-    max-height:4.5rem;
-    max-width:4.7rem;
-    padding-right:1rem;
-    margin:0rem;
-    cursor: pointer;
-}
-
-.home{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
-    background:url(./asset/blockchain.jpg)no-repeat;
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
-    position:relative;
-    text-align: center;
-}
-.home .hometext h1{
-    position:absolute;
-    left:10%;
-    top:35%;
-    align-items:center;
-    justify-content: left;
-    font-size: 14rem;
-    color:transparent;
-    -webkit-text-stroke:1px #fff;
-    background: url(./asset/back.png);
-    -webkit-background-clip: text;
-    background-position: 0 0;
-    animation:back 20s linear infinite;
-}
-
-.home .hometext h2{
-    position:absolute;
-    left:17.5%;
-    bottom:23%;
-    align-items:center;
-    justify-content: left;
-    font-size: 14rem;
-    color:transparent;
-    -webkit-text-stroke:1px #fff;
-    background: url(./asset/back.png);
-    -webkit-background-clip: text;
-    background-position: 0 0;
-    animation:back 20s linear infinite;
-}
-.home .hometext2 p{
-    font-size:9.5rem;
-    position: absolute;
-    left:14.0%;
-    top:39%;
-    color:transparent;
-    -webkit-text-stroke:1px #fff;
-    background: url(./asset/back.png);
-    -webkit-background-clip: text;
-    background-position: 0 0;
-    animation:back 20s linear infinite;
-}
-.home .hometext3 p{
-    font-size:9.5rem;
-    position: absolute;
-    left:21%;
-    bottom:28%;
-    color:transparent;
-    -webkit-text-stroke:1px #fff;
-    background: url(./asset/back.png);
-    -webkit-background-clip: text;
-    background-position: 0 0;
-    animation:back 20s linear infinite;
-}
-@keyframes back {
-    100%{
-        background-position: 2000px 0;
-    }
-}
-.btn{
-    font-weight:bold;
-    font-size:1.5rem;
-    border-radius: 2rem;
-    text-transform: capitalize;
-    letter-spacing:1px;
-    color:white;
-    background:var(--gradient2);
-    padding:0.8rem 2rem 0.8rem 2rem; /*top right bottom left*/
-    margin-top:1.5rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-    z-index: 0;
-    overflow: hidden;
-    box-shadow: 0 .1rem .3rem rgba(255, 0, 0, 0.822);
-    cursor:pointer;
-}
-.btn:active{
-    transform: scale(.85);
-}
-.btn::before{
-    content:'';
-    position:absolute;
-    top:-1rem;
-    left:-100%;
-    background: #fff9;
-    height:150%;
-    width:20%;
-    transform:rotate(25deg);
-    z-index:-1;
-}
-.btn:hover::before  {
-    transition:.5s linear;
-    left:120%;
-}
-.banner{
-    width:100%;
-    height:100vh;
-    overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-.banner video{
-    object-fit:fill;
-    height:100%;
-    width:100%;
-    position:absolute;
-    top:100;
-    left:0;
-    pointer-events: none;
-}
-.banner .content
-{
-    z-index:1;
-    position: relative;
-    text-align: center;
-    justify-content: center;
-    margin:1rem;
-    padding:1rem;
-}
-.banner .content h1{
-    font-size:8rem;
-    justify-content: center;
-    text-align: center;
-    color:white;
-    text-shadow: .03em .03em 0 hsla(230,40%,50%,1);
-}
-.banner .content p{
-    font-size:3rem;
-    justify-content: center;
-    text-align: center;
-    color:white;
-    text-shadow: .03em .03em 0 hsla(230,40%,50%,1);
 }
 .upload {
     position: relative;
