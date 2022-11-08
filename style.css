@@ -578,10 +578,7 @@ header #login img{
     background:linear-gradient (#009ffd, #2a2a72);
 }
 .sec-04 .row .store-now .button{
-    color:white;
-    font-weight: bolder;
-    font-size: 3rem;
-    display: flex;
+
 }
 .cube-container{
     position: relative;
