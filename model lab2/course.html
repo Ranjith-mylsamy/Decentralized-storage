@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset="UTF-8">
+        <meta charset="viewport" content="width=device.width, initial scale=1.0">
+        <title>COURSE REG PAGE</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+    </head>
+<body>
+    <header>
+        <a href="./index.html">
+             COURSE REGISTRATION PAGE
+            <img src="img/hand logo.svg" alt="hand logo"></img>
+        </a>
+    </header>
+    <div class="Course-reg-page">
+        <h1>Course registration page:</h1>
+        <form id="form" action="">
+            <div>
+                <label for="Student-Name">Student Name:</label><br>
+                <input type="text" id="student-name" class="box">
+                <i class="fas fa-exclamation-circle failure-icon"></i>
+                <i class="far fa-check-circle success-icon"></i>
+                <div class="error">
+                </div>
+            </div>
+            <label for="attender-blood-group">Blood Group:</label><br>
+            <div class="attender-blood-grp-flex">
+                <select id="attender-blood-group" name="donorbloodgroup" class="box">
+                    <option value="A+">A+</option>
+                    <option value="B+">B+</option>
+                    <option value="O+">O+</option>
+                    <option value="AB+">AB+</option>
+                </select>
+                <div class="form--blood-type" value="positive">
+                    <div class="form--button-positive no-margin">+</div>
+                    <div class="form--button-negative no-margin">-</div>
+                </div>
+                <i class="fas fa-exclamation-circle failure-icon"></i>
+                <i class="far fa-check-circle success-icon"></i>
+                <div class="error">
+                </div>
+            </div>
+            <div>
+                <label for="Attender-Number">Attender Number:</label><br>
+                <input type="text" id="Attender-Number" class="box">
+                <i class="fas fa-exclamation-circle failure-icon"></i>
+                <i class="far fa-check-circle success-icon"></i>
+                <div class="error">
+                </div>
+            </div>
+            <div>
+                <label for="Patient-Name">Patient Name:</label><br>
+                <input type="tel" id="Patient-Name" class="box">
+                <i class="fas fa-exclamation-circle failure-icon"></i>
+                <i class="far fa-check-circle success-icon"></i>
+                <div class="error">
+                </div>
+            </div>
+            <div>
+                <label for="Patient-Age">Patient Age:</label><br>
+                <input type="number" id="Patient-Age" class="box">
+                <i class="fas fa-exclamation-circle failure-icon"></i>
+                <i class="far fa-check-circle success-icon"></i>
+                <div class="error">
+                </div>
+            </div>
+            <div>
+                <label for="Hospital-Name">Hospital Name:</label><br>
+                <input type="text" id="Hospital-Name" class="box">
+                <i class="fas fa-exclamation-circle failure-icon"></i>
+                <i class="far fa-check-circle success-icon"></i>
+                <div class="error">
+                </div>
+            </div>
+            <div>
+                <label for="City">City:</label><br>
+                <input type="text" id="City" class="box">
+                <i class="fas fa-exclamation-circle failure-icon"></i>
+                <i class="far fa-check-circle success-icon"></i>
+                <div class="error">
+                </div>
+            </div>
+            <div>
+                <label for="Zipcode">Zipcode:</label><br>
+                <input type="number" id="Zipcode" class="box">
+                <i class="fas fa-exclamation-circle failure-icon"></i>
+                <i class="far fa-check-circle success-icon"></i>
+                <div class="error">
+                </div>
+            </div>
+            <div>
+                <label for="Units-of-blood">Units of blood :</label><br>
+                <input type="number" id="Units-of-blood" class="box">
+                <i class="fas fa-exclamation-circle failure-icon"></i>
+                <i class="far fa-check-circle success-icon"></i>
+                <div class="error">
+                </div>
+            </div>
+            <div>
+                <p>Needed Within :</p>
+            </div>
+            <div>
+                <label for="Date">Date:</label><br>
+                <input type="date" id="Date" class="box">
+                <i class="fas fa-exclamation-circle failure-icon"></i>
+                <i class="far fa-check-circle success-icon"></i>
+                <div class="error">
+                </div>
+            </div>
+            <div>
+                <label for="Time">Time:</label><br>
+                <input type="time" id="Time" class="box">
+                <i class="fas fa-exclamation-circle failure-icon"></i>
+                <i class="far fa-check-circle success-icon"></i>
+                <div class="error">
+                </div>
+            </div>
+        <button type="submit" class="btn">Submit</button>
+        </form>
+        </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<script src="./main.js"></script>
+</body>
+</html>
