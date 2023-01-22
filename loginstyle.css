@@ -70,8 +70,32 @@ form{
     height:100%;
     text-align: center;
 }
-h1{
+.overlay-panel-heading{
+    width:50%;
+    text-align: center;
+    padding:1rem;
+    margin:1rem;
+    filter: drop-shadow(0 0 5px rgb(42, 154, 219));
+}
+.image{
+    position: relative;
+    width:200px;
+    height:200px;
+    overflow: hidden;
+    display:flex;
+}
+.image img{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.form-container h1{
     font-weight: bold;
+    text-decoration:underline;
 }
 .social-container{
     margin:20px;
@@ -84,13 +108,17 @@ h1{
     width:30px;
     height:40px;
 }
+.social-container a:hover{
+    transform: translateY(-10px);
+}
 a{
    color:#333;
    font-size:2.5rem;
    margin:15px;
 }
 span{
-    font-size: 12px;
+    font-size: 2rem;
+
 }
 .form-container form .box{
     width:100%;
@@ -181,7 +209,7 @@ span{
 .btn{
     font-weight:bold;
     font-size:1.5rem;
-    border-radius: 2rem;
+    border-radius: 1.5rem;
     text-transform: capitalize;
     letter-spacing:1px;
     color:white;

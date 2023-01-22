@@ -119,6 +119,19 @@ header #login img{
     margin:0rem;
     cursor: pointer;
 }
+#login #light{
+    color:white;
+    font-size: 3rem;
+    margin: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+    position: absolute;
+    top:13%;
+    right:12%;
+}
+#login #light:hover{
+    color:#2A85F8;
+}
 .home{
     display: flex;
     justify-content: center;
@@ -318,22 +331,21 @@ header #login img{
       30% {width:385px;}
       80% {opacity:1;}
       100% {opacity:0;width:385px;}
-  }
-
+}
 .sec-02-content{
     position:relative;
     width:1150px;
     display:flex;
     justify-content: center;
     align-items: center;
-}  
+}
 .sec-02-content .image{
     position: relative;
     width:600px;
     height:400px;
     overflow: hidden;
     display:flex;
-} 
+}
 .sec-02-content .image img{
     z-index: 100;
     position: absolute;
@@ -344,6 +356,22 @@ header #login img{
     object-fit: cover;
     border-radius: 10px;
 }
+/* .sec-02-content .scrollable-image-01{
+    position: absolute;
+    width:400px;
+    height:300px;
+    display:flex;
+}
+.sec-02-content .scrollable-image-01 img{
+    z-index: 201;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    transform:translate(420px,150px);
+} */
 .sec-02-content .textbox
 {
     z-index:200;
@@ -662,6 +690,68 @@ header #login img{
     transition:0s;
     background: #f14e55;
 }
+/*section 5 starts here*/
+.sec-05 .stats-container{
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    text-align: center;
+    flex-direction: row;
+    min-width:100%;
+    max-height:400px;
+    margin-bottom:10rem;
+    padding:4rem;
+    border-radius: 10px;
+    box-shadow:0 25px 45px rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.5);
+    border-right:1px solid rgba(255,255,255,0.2);
+    border-bottom:1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(25px);
+    overflow: auto;
+    background:linear-gradient(360deg,#07263b,#000000);
+}
+.sec-05 .stat-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    max-height: 400px;
+    max-width:500px;
+    border-radius: 10px;
+    border:1px solid rgba(255,255,255,0.5);
+    border-right:1px solid rgba(255,255,255,0.2);
+    border-bottom:1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(25px);
+    color:white;
+    font-size: 3rem;
+    margin:2rem;
+    padding:1rem;
+}
+.sec-05 .stat-box h1{
+    color:white;
+    margin:10px;
+    padding: 10px;
+}
+.sec-05 .stat-box h2{
+    color:green;
+}
+.sec-05 .stat-box h1 i{
+    color:white;
+    padding:10px;
+    margin:10px;
+}
+.sec-05 .stats-container::-webkit-scrollbar{
+    width:1rem;
+}
+.sec-05 .stats-container::-webkit-scrollbar-track{
+    background:var(--blue2);
+}
+.sec-05 .stats-container::-webkit-scrollbar-thumb{
+    background:var(--gradient);
+    border-radius:10px;
+}
+/*upload page css starts here*/
 .upload {
     position: relative;
     min-height:100vh;
@@ -669,7 +759,6 @@ header #login img{
     display:flex;
     justify-content: center;
     align-items: center;
-    display:flex;
     flex-wrap: wrap;
 }
 .upload::before{
@@ -815,6 +904,221 @@ header #login img{
     font-size: 2rem;
     color:white;
 }
+/*stylying for upload content html*/
+.upload-bar-container{
+    justify-content: center;
+    align-items: center;
+    padding:3rem;
+    margin:2rem;
+    position: absolute;
+    top:10%;
+    width: 100%;
+    left:14%;
+}
+.upload-bar-container .upload-bar p {
+    position: relative;
+    left:-10%;
+    margin:8px;
+    padding:4px;
+}
+.upload-bar{
+    border-color: white;
+    border-radius: 10px;
+    border:1px solid rgba(255,255,255,0.5);
+    border-right:1px solid rgba(255,255,255,0.2);
+    border-bottom:1px solid rgba(255,255,255,0.2);
+    max-height: 5%;
+    width:70%;
+    background: rgba(255,255,255,0.1);
+    text-align: center;
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    top:0%;
+}
+.upload-button{
+    align-items: center;
+    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    line-height: 1em;
+    max-width: 100%;
+    min-width: 100px;
+    padding: 10px 10px;
+    text-decoration: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+    margin:10px;
+    right:-10%;
+    position: relative;
+    overflow: hidden;
+}
+.button-63:active,.button-63:hover {
+    outline: 0;
+}
+#myfile{
+  display: none;
+}
+
+.content-table {
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+    overflow-x: auto;
+    font-size: large;
+    margin:1rem;
+    padding: 1rem;
+}
+table {
+	width: 1000px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+th,td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: #fff;
+}
+th {
+	text-align: left;
+}
+thead th 
+{
+		background-color: #353839;
+}
+tbody tr:hover{
+    background-color: rgba(255,255,255,0.3);
+}
+tbody td{
+    position: relative;
+}
+tbody td:hover:before{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    background-color: rgba(255,255,255,0.2);
+    z-index: -1;
+}
+/*footer section begins*/
+footer{
+    position: relative;
+    width:100%;
+    background:#3586ff;
+    min-height: 100px;
+    padding:20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+footer .social_icon,footer .menu{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:10px 0;
+    flex-wrap: wrap;
+}
+footer .social_icon li,footer .menu li{
+    list-style: none;
+}
+footer .social_icon li a{
+    font-size: 2em;
+    color:#fff;
+    margin:0 10px;
+    display:inline-block;
+    transition:0.5s;
+}
+footer .social_icon li a:hover{
+    transform: translateY(-10px);
+}
+footer .menu li a{
+    font-size: 2em;
+    color:#fff;
+    display:inline-block;
+    text-decoration: none;
+    opacity: 0.75;
+    margin:0 10px;
+}
+footer .menu li a:hover{
+    opacity: 1;
+}
+footer p{
+    color:#fff;
+    text-align:center;
+    margin-top:15px;
+    margin-bottom:10px;
+    font-size:1.8em;
+    font-weight:bold;
+}
+footer .wave{
+    position: absolute;
+    top:-100px;
+    left:0;
+    width:100%;
+    height: 100px;
+    background:url(./asset/wave.png);
+    background-size: 1000px 100px;
+}
+footer .wave#wave1{
+    z-index: 100;
+    opacity: 1;
+    bottom: 0;
+    animation: animatewave_01 4s linear infinite;
+}
+footer .wave#wave2{
+    z-index: 99;
+    opacity: 0.5;
+    bottom: 10px;
+    animation: animatewave_02 4s linear infinite;
+}
+footer .wave#wave3{
+    z-index: 100;
+    opacity: 0.2;
+    bottom: 15px;
+    animation: animatewave_01 3s linear infinite;
+}
+footer .wave#wave4{
+    z-index: 99;
+    opacity: 0.7;
+    bottom: 20px;
+    animation: animatewave_02 3s linear infinite;
+}
+@keyframes animatewave_01
+{
+    0%
+    {
+        background-position-x: 1000px;
+    }
+    100%{
+        background-position-x: 0px;
+    }
+}
+@keyframes animatewave_02
+{
+    0%
+    {
+        background-position-x: 0px;
+    }
+    100%{
+        background-position-x: 1000px;
+    }
+}
 /* media queries */
 @media (max-width:768px){
     html{
@@ -858,4 +1162,9 @@ header #login img{
     header .navbar.nav-toggle{
         top:6.4rem;
     }
+    /*upload button*/
+        .upload-button {
+          font-size: 24px;
+          min-width: 196px;
+        }
 }
