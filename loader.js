@@ -9,3 +9,4 @@ window.onload = function(){
 }
 scrollbar.tagName.style
 //setting time out is the solution 
+setTimeout
