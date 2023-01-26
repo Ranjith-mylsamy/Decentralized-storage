@@ -8,4 +8,4 @@ window.onload = function(){
     loader.style.display="none";
 }
 scrollbar.tagName.style
-//setting time out is the solution 
+//setting time out is the solution sample
