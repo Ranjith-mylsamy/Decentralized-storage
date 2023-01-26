@@ -4,8 +4,8 @@ let loader=document.querySelector(".sec-06")
 // document.getElementsByTagName("head")[0].appendChild(styleWebkit);
 // let scrollbar=document.getElementsByTagName("html");
 // scrollbar.style.overflowY="hidden";
-window.onload = function(){
-    loader.style.display="none";
-}
-scrollbar.tagName.style
+// window.onload = function(){
+//     loader.style.display="none";
+// }
+// scrollbar.tagName.style
 //setting time out is the solution sample
