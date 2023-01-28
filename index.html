@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="./style.css">
         <!--title logo-->
         <link rel = "icon" href ="./asset/blockchain (1).png" type = "image/x-icon">
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body>
     <header>
@@ -107,22 +108,13 @@
         <p>Contact Us</p>
     </div>
     <div class="row">
-    <form action="https://formsubmit.co/www.ranjithranjithsmart@gmail.com" method="POST">
-        <!-- honeypot -->
-        <input type="text" name="_honey" style="display:none;">
-        <!-- disable captcha -->
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="yourweburl/index.html">
-        <!-- Auto subject -->
-        <input type="hidden" name="_subject" value="From web3 Storage!">
-        <!-- Template for mail -->
-        <input type="hidden" name="_template" value="table">
-        <input type="text" placeholder="full name" id="text" class="box" name="name" required>
-        <input type="email" placeholder="your email" id="email" class="box" name="email" required>
-        <input type="number" placeholder="your number" class="box" name="number" required>
-        <input type="text" placeholder="Enter subject" class="box" name="subject" required>
-        <textarea name=""cols="30" rows="10" class="box-address" id="query" placeholder="your query" name="query" required></textarea>
-        <h1 class="store-now"><a href="#" class="button" onclick="alert('Message sent successfully..!')" 
+    <form>
+        <input type="text" placeholder="full name" id="text" class="box" required>
+        <input type="email" placeholder="your email" id="email" class="box" required>
+        <input type="number" placeholder="your number" id ="number" class="box" required>
+        <input type="text" placeholder="Enter subject" id="subject" class="box" required>
+        <textarea name=""cols="30" rows="10" class="box-address" id="query" placeholder="your query" required></textarea>
+        <h1 class="store-now"><a href="#" class="button" onclick="alert('Message sent successfully..!'); sendmail();"  
         value="send now"><span>Send now</span><i></i></a></h1>
     </form>
 </div>
@@ -244,6 +236,7 @@
 </footer>
 <!--home section ends-->
 <script src="./main.js"></script>
+<script src="./smtp.js"></script>
 <script src="./darkmode.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 <script src="./about.js"></script>
