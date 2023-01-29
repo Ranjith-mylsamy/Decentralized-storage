@@ -2,7 +2,11 @@
 //     document.getElementById('visits').innerText = response.value;
 // }
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword} from "firebase/auth";
+import { getAuth, 
+         createUserWithEmailAndPassword, 
+         signOut, 
+         signInWithEmailAndPassword,
+         onAuthStateChanged} from "firebase/auth";
 const firebaseConfig = {
     apiKey: "AIzaSyCmvBcRblmn4O0yx1UAetfPnyMRgqC8C-4",
     authDomain: "web3storage-5f50b.firebaseapp.com",
@@ -23,7 +27,7 @@ const firebaseConfig = {
     const password = document.getElementById("signupPassword").value;
     createUserWithEmailAndPassword(auth , email , password)
      .then((cred)=>{
-        console.log('user created:',cred.user);
+        // console.log('user created:',cred.user);
      })
      .catch((err) => {
         console.log(err.message)})
@@ -34,7 +38,7 @@ const logoutButton = document.getElementById("signout");
   logoutButton.addEventListener('click',() => {
     signOut(auth)
     .then(()=>{
-        console.log('The user is logged out');
+        // console.log('The user is logged out');
     })
     .catch((err) => {
         console.log(err.message);
@@ -53,4 +57,8 @@ const logoutButton = document.getElementById("signout");
     .catch((err) => {
         console.log(err.message);
     })
+  })
+  //authentication changes
+  onAuthStateChanged(auth,(user) => {
+    console.log('user status changed: ',user);
   })
