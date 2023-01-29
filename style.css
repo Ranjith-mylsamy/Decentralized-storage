@@ -118,6 +118,9 @@ header #login img{
     padding-right:1rem;
     margin:0rem;
     cursor: pointer;
+    position: absolute;
+    right:2%;
+    top:15%;
 }
 #login #light{
     color:white;
@@ -126,10 +129,23 @@ header #login img{
     padding: 1rem;
     cursor: pointer;
     position: absolute;
-    top:13%;
-    right:12%;
+    top:10%;
+    right:9%;
 }
 #login #light:hover{
+    color:#2A85F8;
+}
+#signout{
+    color:white;
+    font-size: 3rem;
+    margin:1rem;
+    padding:1rem;
+    cursor:pointer;
+    position:absolute;
+    top:10%;
+    right:5.5%;
+}
+#signout:hover{
     color:#2A85F8;
 }
 .home{
