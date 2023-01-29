@@ -1,16 +1,8 @@
-let icon=document.getElementById("signout");
-var user=1;
-if(user==1){
-    icon.classList.add('fa-arrow-right-from-bracket');
-}
-else{
-    icon.classList.remove('fa-arrow-right-from-bracket');
-}
-function callbackName(response) {
-    document.getElementById('visits').innerText = response.value;
-}
+// function callbackName(response) {
+//     document.getElementById('visits').innerText = response.value;
+// }
 import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signOut} from "firebase/auth";
 const firebaseConfig = {
     apiKey: "AIzaSyCmvBcRblmn4O0yx1UAetfPnyMRgqC8C-4",
     authDomain: "web3storage-5f50b.firebaseapp.com",
@@ -27,8 +19,8 @@ const firebaseConfig = {
   const signupForm = document.querySelector('.sign-up-container')
   signupForm.addEventListener('submit',(e) => {
     e.preventDefault()
-    const email = signupForm.email.value;
-    const password = signupForm.password.value;
+    const email = document.getElementById("signupEmail").value;
+    const password = document.getElementById("signupPassword").value;
     createUserWithEmailAndPassword(auth , email , password)
      .then((cred)=>{
         console.log('user created:',cred.user)
@@ -36,4 +28,20 @@ const firebaseConfig = {
      })
      .catch((err) => {
         console.log(err.message)})
+  })
+  
+  //logging in and out
+  const logoutButton = document.getElementById("signout");
+  logoutButton.addEventListener('click',() => {
+    signOut(auth)
+    .then(()=>{
+        console.log('The user is logged out');
+    })
+    .catch((err) => {
+        console.log(err.message)
+    })
+  })
+  const loginForm = document.querySelector('.form-container sign-in-container');
+  loginForm.addEventListener('submit',(e) => {
+    e.preventDefault()
   })
