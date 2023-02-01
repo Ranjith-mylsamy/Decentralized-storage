@@ -769,7 +769,7 @@ header #login img{
 }
 /* Preloader design starts here */
 .sec-06{
-    z-index: 1000
+    z-index: 1000;
     position: fixed;
     top:0;
     width:100%;
@@ -825,13 +825,13 @@ header #login img{
 @keyframes animateCirclePick    
 {    
     0%    
-{    
-transform:scale(1);    
-}    
+    {    
+        transform:scale(1);    
+    }    
     80%,100%    
-{    
-transform:scale(0);
-}
+    {    
+        transform:scale(0);
+    }
 }
 /*upload page css starts here*/
 .upload {
