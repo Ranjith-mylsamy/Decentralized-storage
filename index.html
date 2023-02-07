@@ -215,6 +215,21 @@
         <span style="--i:20;"></span>
     </div>
 </section>
+<div class="popup" id="popup">
+    <i class="fa-solid fa-paper-plane"></i>
+    <h2>Terms and Conditions</h2>
+    <p>We do not collect you personal information except your email.
+        The files which you are upload to IPFS will be visible to everyone
+        whoever have you CID. READ HOW TO USE THIS SITE AND UPLOAD. If you
+        wish you data should not be accessible to anyone even though you are uploading
+        to IPFS, please use encryption scheme in our site. Note that: The files you are
+        uploading to IPFS is permanent, YOU CAN NEVER DELETE OR MODIFY IT. This site is
+        constructed mainly to increase decentralization. If you miss use this site by doing
+        illegal activities we are not responsible for that. Please use this site with caution
+        and don't miss use.
+    </p>
+    <button class="btn" onclick="closePopup()">Accept</button>
+</div>
 <footer>
         <div class="waves">
             <div class="wave" id="wave1"></div>
@@ -235,7 +250,7 @@
             <li><a href="#">Upload</a></li>
         </ul>
         <p>
-            Created by <span>RDM</span> | <a href="#">Terms and conditions</a>
+            Created by <span>RDM</span> | <a href="#" onclick="openPopup()">Terms and conditions</a>
         </p>
 </footer>
 <!--home section ends-->

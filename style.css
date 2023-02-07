@@ -1201,6 +1201,45 @@ footer .wave#wave4{
         background-position-x: 1000px;
     }
 }
+/*Terms and conditions page*/
+.popup{
+    width:500px;
+    background: #222;
+    border-radius: 50px;
+    position: absolute;
+    top:0%;
+    left:50%;
+    transform: translate(-50%,-50%) scale(0.1);
+    text-align: center;
+    padding:0 30px 30px;
+    color:#fff;
+    visibility: hidden;
+    transition: transform 0.4s,top 0.4s;
+}
+.open-popup{
+    visibility: visible;
+    top:55%;
+    transform: translate(-50%,-50%)scale(1);
+}
+.popup i{
+    font-size: 10rem;
+    color: var(--blue);
+    margin-top:-50px;
+    border-radius: 50px;
+}
+.popup i:hover{
+    width:100px;
+    filter:drop-shadow(0 0 10px #fff) drop-shadow(0 0 25px var(--blue));
+}
+.popup h2{
+    font-size: 38px;
+    font-weight: 500;
+    margin:30px 0 10px;
+}
+.popup p{
+    padding:0.5rem;
+    margin:0.5rem;
+}
 /* media queries */
 @media (max-width:768px){
     html{

@@ -11,6 +11,13 @@ if(user==1){
 else{
     icon.classList.remove('fa-arrow-right-from-bracket');
 }
+let popup = document.getElementById("popup");
+function openPopup(){
+    popup.classList.add("open-popup");
+}
+function closePopup(){
+    popup.classList.remove("open-popup");
+}
 // let id = (id) => document.getElementById(id);
 // let classes = (classes) => document.getElementsByClassName(classes);
 
