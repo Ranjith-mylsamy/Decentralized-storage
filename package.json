@@ -19,7 +19,17 @@
   },
   "homepage": "https://github.com/Ranjith-mylsamy/Decentralized-storage#readme",
   "dependencies": {
-    "firebase": "^9.16.0"
+    "autoprefixer": "^10.4.13",
+    "crypto-js": "^4.1.1",
+    "file-encryptor": "^0.1.1",
+    "firebase": "^9.16.0",
+    "fs": "^0.0.1-security",
+    "fstream": "^1.0.12",
+    "path": "^0.12.7",
+    "stream": "^0.0.2",
+    "tar": "^6.1.13",
+    "tar-js": "^0.3.0",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "webpack": "^5.75.0",
