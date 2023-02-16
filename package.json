@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
@@ -29,6 +30,7 @@
     "stream": "^0.0.2",
     "tar": "^6.1.13",
     "tar-js": "^0.3.0",
+    "web3.storage": "^4.4.0",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
