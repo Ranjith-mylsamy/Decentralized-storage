@@ -8,10 +8,10 @@ function makeStorageClient () {
 }
 //function for storing the file,retry,cid and chunk size
 export async function StoreFiles (file){
-    client = makeStorageClient();
+    const client = makeStorageClient();
     const onRootCidReady = rootCid => {return rootCid};
     const onStoredChunk = chunkSize => {return chunkSize};
-    const rootCid = await client.put(fileInput.files, {
+    const rootCid = await client.put(file, {
         name: file.name,
         maxRetries: 3,
         onRootCidReady,
