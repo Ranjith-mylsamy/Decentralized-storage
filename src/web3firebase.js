@@ -92,5 +92,12 @@ const db = getFirestore()
 const colRef = collection(db,'W3Data')
 //get collection data
 getDocs(colRef).then((snapshot)=>{
-  console.log(snapshot.docs);
+  let W3Data = []
+  snapshot.docs.forEach((doc)=>{
+    W3Data.push({ ...doc.data(), id: doc.id})
+  })
+  console.log(W3Data);
+})
+.catch(err=>{
+  console.log(err.message);
 })
