@@ -1,7 +1,8 @@
 import { Web3Storage } from 'web3.storage';
 import { initializeApp } from 'firebase/app';
 import { 
-  getFirestore,collection,getDocs
+  getFirestore,collection,getDocs,
+  addDoc,deleteDoc, doc
 } from 'firebase/firestore'
 
 
@@ -100,4 +101,22 @@ getDocs(colRef).then((snapshot)=>{
 })
 .catch(err=>{
   console.log(err.message);
+})
+//adding documents
+addDoc(colRef,{
+  userId:Ranjith,
+  CID:Cid,
+})
+.then(()=>{
+  console.log("Document has been added");
+})
+//deleting documents
+const deleteW3Data = document.querySelector('.delete');
+deleteW3Data.addEventListener('click',(e)=>{
+  e.preventDefault()
+  const docRef = doc(db,'W3Data','Enter the Id')
+  deleteDoc(docRef)
+  .then(()=>{
+    console.log("Document has been deleted");
+  })
 })
