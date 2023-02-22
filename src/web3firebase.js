@@ -114,7 +114,7 @@ addDoc(colRef,{
 const deleteW3Data = document.querySelector('.delete');
 deleteW3Data.addEventListener('click',(e)=>{
   e.preventDefault()
-  const docRef = doc(db,'W3Data','Enter the Id')
+  const docRef = doc(db,'W3Data','Enter-the-Id')
   deleteDoc(docRef)
   .then(()=>{
     console.log("Document has been deleted");
