@@ -2,7 +2,8 @@ import { Web3Storage } from 'web3.storage';
 import { initializeApp } from 'firebase/app';
 import { 
   getFirestore,collection,getDocs,
-  addDoc,deleteDoc, doc ,setDoc
+  addDoc,deleteDoc,doc,setDoc,
+  onSnapshot,query,where,orderBy
 } from 'firebase/firestore'
 
 
@@ -88,33 +89,33 @@ const app = initializeApp(firebaseConfig);
 
 //init services
 const db = getFirestore()
+
 //collection ref
 const colRef = collection(db,'W3Data')
-//get collection data
-getDocs(colRef).then((snapshot)=>{
+
+//queries
+const q= query(colRef,where("name","==","nameofthefile"))
+
+//real time collection data
+onSnapshot(colRef, (snapshot) => {
   let W3Data = []
-  snapshot.docs.forEach((doc)=>{
-    W3Data.push({ ...doc.data()})
+  snapshot.docs.forEach((doc) => {
+    W3Data.push({ ...doc.data(),id:doc.id})
   })
   console.log(W3Data);
 })
-.catch(err=>{
-  console.log(err.message);
-})
+
 //adding documents
-await setDoc(doc(colRef, "LASi"), {
-  userId:"Ranjith",
+await setDoc(doc(colRef, "Username"), {
   CID:"Cid",
+  SIZE:"dagsize",
+  NAME:"filename"
 })
 .then(()=>{
   console.log("Document has been added");
 })
-const docRef = doc(db,'W3Data','Enter-the-Id')
-deleteDoc(docRef)
-.then(()=>{
-  console.log("Document has been deleted");
-})
-//deleting documents
+
+// deleting documents
 // const deleteW3Data = document.querySelector('.delete');
 // deleteW3Data.addEventListener('click',(e)=>{
 //   e.preventDefault()
