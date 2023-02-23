@@ -2,7 +2,7 @@ import { Web3Storage } from 'web3.storage';
 import { initializeApp } from 'firebase/app';
 import { 
   getFirestore,collection,getDocs,
-  addDoc,deleteDoc, doc
+  addDoc,deleteDoc, doc ,setDoc
 } from 'firebase/firestore'
 
 
@@ -74,16 +74,15 @@ async function storefilesinW3andFirebase(){
     const length = file.length;
     if(length>0)
     {
-    const CID = StoreFiles(file);
+    const CID = await StoreFiles(file);
     console.log(`file is stored successfully ${CID}`);
     }
     else{
-        let rootCid = "bafybeiemkp7jp2vawckbpnijvdtnlkzltyfzib34zwxq76am3mqpxya6eu";
+        let rootCid = "bafybeicp7q3vx266sqi6nlqpikwfzhfyr64tsnmzazcobjdl2fellavzoa";
         const rCID = retrieveFiles (rootCid);
         console.log("Please select the File");
     }
 };
-
 //firebase part
 const app = initializeApp(firebaseConfig);
 
@@ -95,7 +94,7 @@ const colRef = collection(db,'W3Data')
 getDocs(colRef).then((snapshot)=>{
   let W3Data = []
   snapshot.docs.forEach((doc)=>{
-    W3Data.push({ ...doc.data(), id: doc.id})
+    W3Data.push({ ...doc.data()})
   })
   console.log(W3Data);
 })
@@ -103,20 +102,25 @@ getDocs(colRef).then((snapshot)=>{
   console.log(err.message);
 })
 //adding documents
-addDoc(colRef,{
-  userId:Ranjith,
-  CID:Cid,
+await setDoc(doc(colRef, "LASi"), {
+  userId:"Ranjith",
+  CID:"Cid",
 })
 .then(()=>{
   console.log("Document has been added");
 })
-//deleting documents
-const deleteW3Data = document.querySelector('.delete');
-deleteW3Data.addEventListener('click',(e)=>{
-  e.preventDefault()
-  const docRef = doc(db,'W3Data','Enter-the-Id')
-  deleteDoc(docRef)
-  .then(()=>{
-    console.log("Document has been deleted");
-  })
+const docRef = doc(db,'W3Data','Enter-the-Id')
+deleteDoc(docRef)
+.then(()=>{
+  console.log("Document has been deleted");
 })
+//deleting documents
+// const deleteW3Data = document.querySelector('.delete');
+// deleteW3Data.addEventListener('click',(e)=>{
+//   e.preventDefault()
+//   const docRef = doc(db,'W3Data','Enter-the-Id')
+//   deleteDoc(docRef)
+//   .then(()=>{
+//     console.log("Document has been deleted");
+//   })
+// })
