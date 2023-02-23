@@ -94,7 +94,7 @@ const db = getFirestore()
 const colRef = collection(db,'W3Data')
 
 //queries
-const q= query(colRef,where("name","==","nameofthefile"))
+// const q= query(colRef,where("name","==","nameofthefile"))
 
 //real time collection data
 onSnapshot(colRef, (snapshot) => {
