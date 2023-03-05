@@ -90,7 +90,7 @@ for (const file of files) {
   console.log(`value 1 :${info.cid} value 2:${info.dagSize} ${info.created}`);
       //adding documents
       await updateDoc(doc(colRef, "Username"), {
-        SIZE:file.size,
+        SIZE:formatBytes(file.size),
         NAME:file.name,
         CREATED:info.created.slice(0,9)
       })
@@ -134,15 +134,16 @@ async function storefilesinW3andFirebase(){
 //     console.log("Document has been deleted");
 //   })
 // })
-//function to format size
-// function formatBytes(bytes, decimals = 2) {
-//   if (!+bytes) return '0 Bytes'
 
-//   const k = 1024
-//   const dm = decimals < 0 ? 0 : decimals
-//   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+// function to format size
+function formatBytes(bytes, decimals = 2) {
+  if (!+bytes) return '0 Bytes'
 
-//   const i = Math.floor(Math.log(bytes) / Math.log(k))
+  const k = 1024
+  const dm = decimals < 0 ? 0 : decimals
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
 
-//   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
-// }
+  const i = Math.floor(Math.log(bytes) / Math.log(k))
+
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
+}
