@@ -3,7 +3,8 @@ import { initializeApp } from 'firebase/app';
 import { 
   getFirestore,collection,getDocs,
   addDoc,deleteDoc,doc,setDoc,
-  onSnapshot,query,where,orderBy,updateDoc
+  onSnapshot,query,orderBy,updateDoc,
+  serverTimestamp
 } from 'firebase/firestore'
 
 
@@ -28,10 +29,10 @@ const db = getFirestore()
 const colRef = collection(db,'W3Data')
 
 //queries
-// const q= query(colRef,where("name","==","nameofthefile"))
+const q = query(colRef,orderBy('CREATEDAT','asc'))
 
 //real time collection data
-onSnapshot(colRef, (snapshot) => {
+onSnapshot(q, (snapshot) => {
   let W3Data = []
   snapshot.docs.forEach((doc) => {
     W3Data.push({ ...doc.data(),id:doc.id})
@@ -85,15 +86,16 @@ const client = makeStorageClient();
 const res = await client.get(rootCid); // Web3Response
 const files = await res.files();      // Web3File[]
 for (const file of files) {
+  const info = await client.status(rootCid);
+  console.log(`value 1 :${info.cid} value 2:${info.dagSize} ${info.created}`);
       //adding documents
       await updateDoc(doc(colRef, "Username"), {
         SIZE:file.size,
-        NAME:file.name
+        NAME:file.name,
+        CREATED:info.created.slice(0,9)
       })
   console.log(`${file.cid} ${file.name} ${file.size}`);
 }
-const info = await client.status(rootCid);
-console.log(`value 1 :${info.cid} value 2:${info.dagSize} ${info.created}`);
 }
 
 async function storefilesinW3andFirebase(){
@@ -106,7 +108,7 @@ async function storefilesinW3andFirebase(){
     //adding documents
     await setDoc(doc(colRef, "Username"), {
       CID:CID,
-      SIZE:"dagsize",
+      CREATEDAT:serverTimestamp(),
       NAME:"filename"
     })
     .then(()=>{
@@ -132,3 +134,15 @@ async function storefilesinW3andFirebase(){
 //     console.log("Document has been deleted");
 //   })
 // })
+//function to format size
+// function formatBytes(bytes, decimals = 2) {
+//   if (!+bytes) return '0 Bytes'
+
+//   const k = 1024
+//   const dm = decimals < 0 ? 0 : decimals
+//   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+
+//   const i = Math.floor(Math.log(bytes) / Math.log(k))
+
+//   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
+// }
