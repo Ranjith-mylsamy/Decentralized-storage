@@ -659,10 +659,10 @@ eval("\nvar N1 = Math.pow(2,  7)\nvar N2 = Math.pow(2, 14)\nvar N3 = Math.pow(2,
 /*!*****************************!*\
   !*** ./src/web3firebase.js ***!
   \*****************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var web3_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! web3.storage */ \"./node_modules/web3.storage/src/lib.js\");\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/app */ \"./node_modules/firebase/app/dist/esm/index.esm.js\");\n/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/firestore */ \"./node_modules/firebase/firestore/dist/esm/index.esm.js\");\n\r\n\r\n\r\n\r\n\r\nconst firebaseConfig = {\r\n  apiKey: \"AIzaSyCmvBcRblmn4O0yx1UAetfPnyMRgqC8C-4\",\r\n  authDomain: \"web3storage-5f50b.firebaseapp.com\",\r\n  databaseURL: \"https://web3storage-5f50b-default-rtdb.firebaseio.com\",\r\n  projectId: \"web3storage-5f50b\",\r\n  storageBucket: \"web3storage-5f50b.appspot.com\",\r\n  messagingSenderId: \"709180782228\",\r\n  appId: \"1:709180782228:web:b479d09d2055d2dc54e681\",\r\n  measurementId: \"G-ELP48BVPP3\"\r\n};\r\n\r\nfunction getAccessToken () {\r\n    const token = \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDc1Yjc3RThhNmRCMTNlNjhmZThlMUMwMzEwMDk4QUNlNEZFN2RBNWEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzYxOTk5Nzk1MDEsIm5hbWUiOiJ3ZWIzIn0.IUPdIPd94UXhLK8HWzyeZ7rDLFtzj2DWmAlm0t8LDkM\";\r\n    return token\r\n}\r\nfunction makeStorageClient () {\r\n    return new web3_storage__WEBPACK_IMPORTED_MODULE_0__.Web3Storage({ token: getAccessToken() })\r\n  }\r\n\r\nconst upload = document.getElementById(\"fileupload\");\r\nconst reader = new FileReader();\r\n\r\nupload.addEventListener('click',(e)=>{\r\n    e.preventDefault();\r\n    storefilesinW3andFirebase();\r\n});\r\n\r\n//function for storing the file,retry,cid and chunk size\r\nasync function StoreFiles (file) {\r\n    const client = makeStorageClient();\r\n    const onRootCidReady = cid => {\r\n        console.log('uploading files with cid:', cid)\r\n    }\r\n\r\n    const totalSize = file[0].size;\r\n    let uploaded = 0;\r\n    const onStoredChunk = size => {\r\n        uploaded += size\r\n        const pct = 100 * (uploaded / totalSize)\r\n        console.log(`Uploading... ${Math.floor(pct / 100) * 100}% complete`)\r\n      }\r\n\r\n    const CID = await client.put(file, {\r\n        name: file.item(0).name,\r\n        maxRetries: 3,\r\n        onRootCidReady,\r\n        onStoredChunk,\r\n      });\r\n    return CID;\r\n}\r\n\r\n//function for getting the file\r\nasync function retrieveFiles (rootCid){\r\nconst client = makeStorageClient();\r\nconst res = await client.get(rootCid); // Web3Response\r\nconst files = await res.files();      // Web3File[]\r\nfor (const file of files) {\r\n  console.log(`${file.cid} ${file.name} ${file.size}`);\r\n}\r\nconst info = await client.status(rootCid);\r\nconsole.log(`value 1 :${info.cid} value 2:${info.dagSize} ${info.created}`);\r\n}\r\n\r\nasync function storefilesinW3andFirebase(){\r\n    const file = document.querySelector('input[type=file]').files;\r\n    const length = file.length;\r\n    if(length>0)\r\n    {\r\n    const CID = await StoreFiles(file);\r\n    console.log(`file is stored successfully ${CID}`);\r\n    }\r\n    else{\r\n        let rootCid = \"bafybeicp7q3vx266sqi6nlqpikwfzhfyr64tsnmzazcobjdl2fellavzoa\";\r\n        const rCID = retrieveFiles (rootCid);\r\n        console.log(\"Please select the File\");\r\n    }\r\n};\r\n//firebase part\r\nconst app = (0,firebase_app__WEBPACK_IMPORTED_MODULE_1__.initializeApp)(firebaseConfig);\r\n\r\n//init services\r\nconst db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.getFirestore)()\r\n\r\n//collection ref\r\nconst colRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.collection)(db,'W3Data')\r\n\r\n//queries\r\n// const q= query(colRef,where(\"name\",\"==\",\"nameofthefile\"))\r\n\r\n//real time collection data\r\n;(0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.onSnapshot)(colRef, (snapshot) => {\r\n  let W3Data = []\r\n  snapshot.docs.forEach((doc) => {\r\n    W3Data.push({ ...doc.data(),id:doc.id})\r\n  })\r\n  console.log(W3Data);\r\n})\r\n\r\n//adding documents\r\nawait (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.setDoc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.doc)(colRef, \"Username\"), {\r\n  CID:\"Cid\",\r\n  SIZE:\"dagsize\",\r\n  NAME:\"filename\"\r\n})\r\n.then(()=>{\r\n  console.log(\"Document has been added\");\r\n})\r\n\r\n// deleting documents\r\n// const deleteW3Data = document.querySelector('.delete');\r\n// deleteW3Data.addEventListener('click',(e)=>{\r\n//   e.preventDefault()\r\n//   const docRef = doc(db,'W3Data','Enter-the-Id')\r\n//   deleteDoc(docRef)\r\n//   .then(()=>{\r\n//     console.log(\"Document has been deleted\");\r\n//   })\r\n// })\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } }, 1);\n\n//# sourceURL=webpack://dstorage/./src/web3firebase.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var web3_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! web3.storage */ \"./node_modules/web3.storage/src/lib.js\");\n/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/app */ \"./node_modules/firebase/app/dist/esm/index.esm.js\");\n/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/firestore */ \"./node_modules/firebase/firestore/dist/esm/index.esm.js\");\n\r\n\r\n\r\n\r\n\r\nconst firebaseConfig = {\r\n  apiKey: \"AIzaSyCmvBcRblmn4O0yx1UAetfPnyMRgqC8C-4\",\r\n  authDomain: \"web3storage-5f50b.firebaseapp.com\",\r\n  databaseURL: \"https://web3storage-5f50b-default-rtdb.firebaseio.com\",\r\n  projectId: \"web3storage-5f50b\",\r\n  storageBucket: \"web3storage-5f50b.appspot.com\",\r\n  messagingSenderId: \"709180782228\",\r\n  appId: \"1:709180782228:web:b479d09d2055d2dc54e681\",\r\n  measurementId: \"G-ELP48BVPP3\"\r\n};\r\n\r\n//firebase part\r\nconst app = (0,firebase_app__WEBPACK_IMPORTED_MODULE_1__.initializeApp)(firebaseConfig);\r\n\r\n//init services\r\nconst db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.getFirestore)()\r\n\r\n//collection ref\r\nconst colRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.collection)(db,'W3Data')\r\n\r\n//queries\r\n// const q= query(colRef,where(\"name\",\"==\",\"nameofthefile\"))\r\n\r\n//real time collection data\r\n;(0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.onSnapshot)(colRef, (snapshot) => {\r\n  let W3Data = []\r\n  snapshot.docs.forEach((doc) => {\r\n    W3Data.push({ ...doc.data(),id:doc.id})\r\n  })\r\n  console.log(W3Data);\r\n})\r\n\r\nfunction getAccessToken () {\r\n    const token = \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDc1Yjc3RThhNmRCMTNlNjhmZThlMUMwMzEwMDk4QUNlNEZFN2RBNWEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzYxOTk5Nzk1MDEsIm5hbWUiOiJ3ZWIzIn0.IUPdIPd94UXhLK8HWzyeZ7rDLFtzj2DWmAlm0t8LDkM\";\r\n    return token\r\n}\r\nfunction makeStorageClient () {\r\n    return new web3_storage__WEBPACK_IMPORTED_MODULE_0__.Web3Storage({ token: getAccessToken() })\r\n}\r\n\r\nconst upload = document.getElementById(\"fileupload\");\r\nconst reader = new FileReader();\r\n\r\nupload.addEventListener('click',(e)=>{\r\n    e.preventDefault();\r\n    storefilesinW3andFirebase();\r\n});\r\n\r\n//function for storing the file,retry,cid and chunk size\r\nasync function StoreFiles (file) {\r\n    const client = makeStorageClient();\r\n    const onRootCidReady = cid => {\r\n        console.log('uploading files with cid:', cid)\r\n    }\r\n\r\n    const totalSize = file[0].size;\r\n    let uploaded = 0;\r\n    const onStoredChunk = size => {\r\n        uploaded += size\r\n        const pct = 100 * (uploaded / totalSize)\r\n        console.log(`Uploading... ${Math.floor(pct / 100) * 100}% complete`)\r\n      }\r\n\r\n    const CID = await client.put(file, {\r\n        name: file.item(0).name,\r\n        maxRetries: 3,\r\n        onRootCidReady,\r\n        onStoredChunk,\r\n      });\r\n    return CID;\r\n}\r\n\r\n//function for getting the file\r\nasync function retrieveFiles (rootCid){\r\nconst client = makeStorageClient();\r\nconst res = await client.get(rootCid); // Web3Response\r\nconst files = await res.files();      // Web3File[]\r\nfor (const file of files) {\r\n      //adding documents\r\n      await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.updateDoc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.doc)(colRef, \"Username\"), {\r\n        SIZE:file.size,\r\n        NAME:file.name\r\n      })\r\n  console.log(`${file.cid} ${file.name} ${file.size}`);\r\n}\r\nconst info = await client.status(rootCid);\r\nconsole.log(`value 1 :${info.cid} value 2:${info.dagSize} ${info.created}`);\r\n}\r\n\r\nasync function storefilesinW3andFirebase(){\r\n    const file = document.querySelector('input[type=file]').files;\r\n    const length = file.length;\r\n    if(length>0)\r\n    {\r\n    const CID = await StoreFiles(file);\r\n\r\n    //adding documents\r\n    await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.setDoc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.doc)(colRef, \"Username\"), {\r\n      CID:CID,\r\n      SIZE:\"dagsize\",\r\n      NAME:\"filename\"\r\n    })\r\n    .then(()=>{\r\n      console.log(\"Document has been added\");\r\n    })\r\n    console.log(`file is stored successfully ${CID}`);\r\n    }\r\n    else{\r\n        let rootCid = \"bafybeifhl76id3tzuxrdbzkbk3ek7wavygmztcobkaauxhif4c4m5dvwc4\";\r\n        const rCID = retrieveFiles (rootCid);\r\n        console.log(\"Please select the File\");\r\n    }\r\n};\r\n\r\n\r\n// deleting documents\r\n// const deleteW3Data = document.querySelector('.delete');\r\n// deleteW3Data.addEventListener('click',(e)=>{\r\n//   e.preventDefault()\r\n//   const docRef = doc(db,'W3Data','Enter-the-Id')\r\n//   deleteDoc(docRef)\r\n//   .then(()=>{\r\n//     console.log(\"Document has been deleted\");\r\n//   })\r\n// })\n\n//# sourceURL=webpack://dstorage/./src/web3firebase.js?");
 
 /***/ }),
 
@@ -2112,75 +2112,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/async module */
-/******/ 	(() => {
-/******/ 		var webpackQueues = typeof Symbol === "function" ? Symbol("webpack queues") : "__webpack_queues__";
-/******/ 		var webpackExports = typeof Symbol === "function" ? Symbol("webpack exports") : "__webpack_exports__";
-/******/ 		var webpackError = typeof Symbol === "function" ? Symbol("webpack error") : "__webpack_error__";
-/******/ 		var resolveQueue = (queue) => {
-/******/ 			if(queue && !queue.d) {
-/******/ 				queue.d = 1;
-/******/ 				queue.forEach((fn) => (fn.r--));
-/******/ 				queue.forEach((fn) => (fn.r-- ? fn.r++ : fn()));
-/******/ 			}
-/******/ 		}
-/******/ 		var wrapDeps = (deps) => (deps.map((dep) => {
-/******/ 			if(dep !== null && typeof dep === "object") {
-/******/ 				if(dep[webpackQueues]) return dep;
-/******/ 				if(dep.then) {
-/******/ 					var queue = [];
-/******/ 					queue.d = 0;
-/******/ 					dep.then((r) => {
-/******/ 						obj[webpackExports] = r;
-/******/ 						resolveQueue(queue);
-/******/ 					}, (e) => {
-/******/ 						obj[webpackError] = e;
-/******/ 						resolveQueue(queue);
-/******/ 					});
-/******/ 					var obj = {};
-/******/ 					obj[webpackQueues] = (fn) => (fn(queue));
-/******/ 					return obj;
-/******/ 				}
-/******/ 			}
-/******/ 			var ret = {};
-/******/ 			ret[webpackQueues] = x => {};
-/******/ 			ret[webpackExports] = dep;
-/******/ 			return ret;
-/******/ 		}));
-/******/ 		__webpack_require__.a = (module, body, hasAwait) => {
-/******/ 			var queue;
-/******/ 			hasAwait && ((queue = []).d = 1);
-/******/ 			var depQueues = new Set();
-/******/ 			var exports = module.exports;
-/******/ 			var currentDeps;
-/******/ 			var outerResolve;
-/******/ 			var reject;
-/******/ 			var promise = new Promise((resolve, rej) => {
-/******/ 				reject = rej;
-/******/ 				outerResolve = resolve;
-/******/ 			});
-/******/ 			promise[webpackExports] = exports;
-/******/ 			promise[webpackQueues] = (fn) => (queue && fn(queue), depQueues.forEach(fn), promise["catch"](x => {}));
-/******/ 			module.exports = promise;
-/******/ 			body((deps) => {
-/******/ 				currentDeps = wrapDeps(deps);
-/******/ 				var fn;
-/******/ 				var getResult = () => (currentDeps.map((d) => {
-/******/ 					if(d[webpackError]) throw d[webpackError];
-/******/ 					return d[webpackExports];
-/******/ 				}))
-/******/ 				var promise = new Promise((resolve) => {
-/******/ 					fn = () => (resolve(getResult));
-/******/ 					fn.r = 0;
-/******/ 					var fnQueue = (q) => (q !== queue && !depQueues.has(q) && (depQueues.add(q), q && !q.d && (fn.r++, q.push(fn))));
-/******/ 					currentDeps.map((dep) => (dep[webpackQueues](fnQueue)));
-/******/ 				});
-/******/ 				return fn.r ? promise : getResult();
-/******/ 			}, (err) => ((err ? reject(promise[webpackError] = err) : outerResolve(exports)), resolveQueue(queue)));
-/******/ 			queue && (queue.d = 0);
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports

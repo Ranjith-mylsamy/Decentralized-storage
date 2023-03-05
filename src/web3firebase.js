@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { 
   getFirestore,collection,getDocs,
   addDoc,deleteDoc,doc,setDoc,
-  onSnapshot,query,where,orderBy
+  onSnapshot,query,where,orderBy,updateDoc
 } from 'firebase/firestore'
 
 
@@ -18,13 +18,34 @@ const firebaseConfig = {
   measurementId: "G-ELP48BVPP3"
 };
 
+//firebase part
+const app = initializeApp(firebaseConfig);
+
+//init services
+const db = getFirestore()
+
+//collection ref
+const colRef = collection(db,'W3Data')
+
+//queries
+// const q= query(colRef,where("name","==","nameofthefile"))
+
+//real time collection data
+onSnapshot(colRef, (snapshot) => {
+  let W3Data = []
+  snapshot.docs.forEach((doc) => {
+    W3Data.push({ ...doc.data(),id:doc.id})
+  })
+  console.log(W3Data);
+})
+
 function getAccessToken () {
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDc1Yjc3RThhNmRCMTNlNjhmZThlMUMwMzEwMDk4QUNlNEZFN2RBNWEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzYxOTk5Nzk1MDEsIm5hbWUiOiJ3ZWIzIn0.IUPdIPd94UXhLK8HWzyeZ7rDLFtzj2DWmAlm0t8LDkM";
     return token
 }
 function makeStorageClient () {
     return new Web3Storage({ token: getAccessToken() })
-  }
+}
 
 const upload = document.getElementById("fileupload");
 const reader = new FileReader();
@@ -64,6 +85,11 @@ const client = makeStorageClient();
 const res = await client.get(rootCid); // Web3Response
 const files = await res.files();      // Web3File[]
 for (const file of files) {
+      //adding documents
+      await updateDoc(doc(colRef, "Username"), {
+        SIZE:file.size,
+        NAME:file.name
+      })
   console.log(`${file.cid} ${file.name} ${file.size}`);
 }
 const info = await client.status(rootCid);
@@ -76,44 +102,25 @@ async function storefilesinW3andFirebase(){
     if(length>0)
     {
     const CID = await StoreFiles(file);
+
+    //adding documents
+    await setDoc(doc(colRef, "Username"), {
+      CID:CID,
+      SIZE:"dagsize",
+      NAME:"filename"
+    })
+    .then(()=>{
+      console.log("Document has been added");
+    })
     console.log(`file is stored successfully ${CID}`);
     }
     else{
-        let rootCid = "bafybeicp7q3vx266sqi6nlqpikwfzhfyr64tsnmzazcobjdl2fellavzoa";
+        let rootCid = "bafybeifhl76id3tzuxrdbzkbk3ek7wavygmztcobkaauxhif4c4m5dvwc4";
         const rCID = retrieveFiles (rootCid);
         console.log("Please select the File");
     }
 };
-//firebase part
-const app = initializeApp(firebaseConfig);
 
-//init services
-const db = getFirestore()
-
-//collection ref
-const colRef = collection(db,'W3Data')
-
-//queries
-// const q= query(colRef,where("name","==","nameofthefile"))
-
-//real time collection data
-onSnapshot(colRef, (snapshot) => {
-  let W3Data = []
-  snapshot.docs.forEach((doc) => {
-    W3Data.push({ ...doc.data(),id:doc.id})
-  })
-  console.log(W3Data);
-})
-
-//adding documents
-await setDoc(doc(colRef, "Username"), {
-  CID:"Cid",
-  SIZE:"dagsize",
-  NAME:"filename"
-})
-.then(()=>{
-  console.log("Document has been added");
-})
 
 // deleting documents
 // const deleteW3Data = document.querySelector('.delete');
