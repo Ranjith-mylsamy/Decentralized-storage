@@ -147,18 +147,22 @@ function formatBytes(bytes, decimals = 2) {
 
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
 }
+
 //copy to clipboard
+const copy = document.getElementById("clipboard");
+copy.addEventListener('click',(e)=>{
+    e.preventDefault();
+    copyText();
+});
+
 function copyText() {
   // Get the text field
-  var copyText = document.getElementById("myInput");
-
-  // Select the text field
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); // For mobile devices
+  var copyText = document.getElementById("copy").innerText;
+  console.log("Text copied");
 
    // Copy the text inside the text field
-  navigator.clipboard.writeText(copyText.value);
+  navigator.clipboard.writeText(copyText);
 
   // Alert the copied text
-  alert("Copied the text: " + copyText.value);
+  alert("Copied the text: " + copyText);
 }

@@ -1076,7 +1076,7 @@ table {
     border-radius: 10px;
 }
 .fa-clipboard{
-    position: relative;
+    position:fixed;
     left:30%;
 }
 .fa-download{
@@ -1100,7 +1100,7 @@ thead th
 tbody td:hover{
     background-color: rgba(255,255,255,0.3);
 }
-tbody td{
+td{
     position: relative;
     text-align:center;
     background:rgb(236, 240, 255)

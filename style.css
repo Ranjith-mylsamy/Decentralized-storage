@@ -1093,7 +1093,7 @@ tbody tr:hover{
 .fa-trash{
     color:red;
 }
-tbody td{
+td{
     position: relative;
     text-align:center;
 }
