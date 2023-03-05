@@ -1075,6 +1075,16 @@ table {
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
     border-radius: 10px;
 }
+.fa-clipboard{
+    position: relative;
+    left:30%;
+}
+.fa-download{
+    color:#00ff08b6;
+}
+.fa-trash{
+    color:red;
+}
 th,td {
     padding: 15px;
     background-color: rgba(255,255,255,0.2);
@@ -1092,6 +1102,7 @@ tbody td:hover{
 }
 tbody td{
     position: relative;
+    text-align:center;
     background:rgb(236, 240, 255)
 }
 tbody td:hover:before{
