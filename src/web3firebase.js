@@ -27,23 +27,23 @@ const auth = getAuth();
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    var uid = user.uid;
+    var userid = user.uid;
 
 
 //init services
 const db = getFirestore()
 
 //collection ref
-const colRef = collection(db,'W3Data')
+const colRef = collection(db, userid)
 
 //queries
 const q = query(colRef,orderBy('CREATEDAT','asc'))
 
 //real time collection data
 onSnapshot(q, (snapshot) => {
-  let W3Data = []
+  let userid = []
   snapshot.docs.forEach((doc) => {
-    W3Data.push({ ...doc.data(),id:doc.id})
+    userid.push({ ...doc.data(),id:doc.id})
     let data = doc.data();
     let row = `<tr>
                   <td>${data.NAME}</td>
@@ -57,9 +57,8 @@ onSnapshot(q, (snapshot) => {
     let table = document.getElementById('tabledata')
     table.innerHTML += row;
   })
-  console.log(W3Data);
+  console.log(userid);
 })
-
 function getAccessToken () {
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDc1Yjc3RThhNmRCMTNlNjhmZThlMUMwMzEwMDk4QUNlNEZFN2RBNWEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzYxOTk5Nzk1MDEsIm5hbWUiOiJ3ZWIzIn0.IUPdIPd94UXhLK8HWzyeZ7rDLFtzj2DWmAlm0t8LDkM";
     return token
@@ -69,7 +68,6 @@ function makeStorageClient () {
 }
 
 const upload = document.getElementById("fileupload");
-const reader = new FileReader();
 
 upload?.addEventListener('click',(e)=>{
     e.preventDefault();
@@ -101,25 +99,29 @@ async function StoreFiles (file) {
 }
 
 //function for getting the file
-async function retrieveFiles (rootCid){
-const client = makeStorageClient();
-const res = await client.get(rootCid); // Web3Response
-const files = await res.files();      // Web3File[]
-for (const file of files) {
-  const info = await client.status(rootCid);
-  console.log(`value 1 :${info.cid} value 2:${info.dagSize} ${info.created}`);
-      //adding documents
-      await updateDoc(doc(colRef, uid), {
-        SIZE:formatBytes(file.size),
-        NAME:file.name,
-        CREATED:info.created.slice(0,9),
-        STORAGEPROVIDERS:'Sample'
-      })
-  console.log(`${file.cid} ${file.name} ${file.size}`);
-}
+async function retrieveFiles (rootCid)
+{
+  const client = makeStorageClient();
+  const res = await client.get(rootCid); // Web3Response
+  const files = await res.files();      // Web3File[]
+    for (const file of files) 
+    {
+      const info = await client.status(rootCid);
+      console.log(`value 1 :${info.cid} value 2:${info.dagSize} ${info.created}`);
+          //adding documents
+          await updateDoc(doc(colRef, 'sample'), 
+          {
+            SIZE:formatBytes(file.size),
+            NAME:file.name,
+            CREATED:info.created.slice(0,9),
+            STORAGEPROVIDERS:'Sample'
+          })
+      console.log(`${file.cid} ${file.name} ${file.size}`);
+    }
 }
 
-async function storefilesinW3andFirebase(){
+async function storefilesinW3andFirebase()
+{
     const file = document.querySelector('input[type=file]').files;
     const length = file.length;
     if(length>0)
@@ -127,7 +129,7 @@ async function storefilesinW3andFirebase(){
     const CID = await StoreFiles(file);
 
     //adding documents
-    await setDoc(doc(colRef, uid), {
+    await setDoc(doc(colRef, CID), {
       CID:CID,
       CREATEDAT:serverTimestamp(),
       NAME:"filename"
