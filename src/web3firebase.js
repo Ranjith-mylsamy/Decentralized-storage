@@ -44,19 +44,22 @@ onSnapshot(q, (snapshot) => {
   let W3Data = []
   snapshot.docs.forEach((doc) => {
     W3Data.push({ ...doc.data(),id:doc.id})
+    let data = doc.data();
+    let row = `<tr>
+                  <td>${data.NAME}</td>
+                  <td id="copy">${data.CID}<i class="fa-regular fa-clipboard" id="clipboard"></i></td>
+                  <td>${data.STORAGEPROVIDERS}</td>
+                  <td>${data.SIZE}</td>
+                  <td>${data.CREATED}</td>
+                  <td><i class="fa-solid fa-download"></i></td>
+                  <td><i class="fa-solid fa-trash"></i></td>
+                </tr>`
+    let table = document.getElementById('tabledata')
+    table.innerHTML += row;
   })
   console.log(W3Data);
 })
-let data = doc.data();
-let row = `<tr>
-              <td>${data.NAME}</td>
-              <td id="copy">${data.NAME}<i class="fa-regular fa-clipboard" id="clipboard"></i></td>
-              <td>${data.NAME}</td>
-              <td>${data.NAME}</td>
-              <td>${data.NAME}</td>
-              <td><i class="fa-solid fa-download"></i></td>
-              <td><i class="fa-solid fa-trash"></i></td>
-            </tr>`
+
 function getAccessToken () {
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDc1Yjc3RThhNmRCMTNlNjhmZThlMUMwMzEwMDk4QUNlNEZFN2RBNWEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzYxOTk5Nzk1MDEsIm5hbWUiOiJ3ZWIzIn0.IUPdIPd94UXhLK8HWzyeZ7rDLFtzj2DWmAlm0t8LDkM";
     return token
