@@ -1069,7 +1069,6 @@ header #login img{
     padding: 1rem;
 }
 table {
-    width: 1000px;
     border-collapse: collapse;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);

@@ -1056,13 +1056,12 @@ header #login img{
 	top: 60%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-    overflow-x: auto;
+    overflow-x:hidden;
     font-size: large;
     margin:1rem;
     padding: 1rem;
 }
 table {
-	width: 1000px;
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0,0,0,0.1);
@@ -1084,8 +1083,8 @@ tbody tr:hover{
     background-color: rgba(255,255,255,0.3);
 }
 .fa-clipboard{
-    position: relative;
-    left:30%;
+    position: absolute;
+    right:0;
 }
 .fa-download{
     color:#00ff08b6;

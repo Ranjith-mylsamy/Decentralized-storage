@@ -7,6 +7,7 @@ import { getAuth,
          signOut, 
          signInWithEmailAndPassword,
          onAuthStateChanged} from "firebase/auth";
+
 const firebaseConfig = {
     apiKey: "AIzaSyCmvBcRblmn4O0yx1UAetfPnyMRgqC8C-4",
     authDomain: "web3storage-5f50b.firebaseapp.com",
@@ -21,7 +22,7 @@ const firebaseConfig = {
   const auth = getAuth();
   //signing users up
   const signupForm = document.querySelector('.sign-up-container')
-  signupForm.addEventListener('submit',(e) => {
+  signupForm?.addEventListener('submit',(e) => {
     e.preventDefault()
     const email = document.getElementById("signupEmail").value;
     const password = document.getElementById("signupPassword").value;
@@ -45,7 +46,7 @@ const logoutButton = document.getElementById("signout");
     })
   })
   const loginForm = document.querySelector('.sign-in-container');
-  loginForm.addEventListener('submit',(e) => {
+  loginForm?.addEventListener('submit',(e) => {
     e.preventDefault()
 
     const email = document.getElementById("loginEmail").value;
@@ -61,6 +62,11 @@ const logoutButton = document.getElementById("signout");
   //authentication changes
   onAuthStateChanged(auth,(user) => {
     console.log('user status changed: ',user);
+    if(user)
+    {
+//     const uid = user.uid;
+//     console.log(uid);
+    }
   })
   //google sign up
 
@@ -68,7 +74,7 @@ const provider = new GoogleAuthProvider();
 import {signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const googleBtn=document.getElementById("google");
-googleBtn.addEventListener('click',function(){
+googleBtn?.addEventListener('click',function(){
 signInWithPopup(auth, provider)
   .then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
@@ -87,3 +93,4 @@ signInWithPopup(auth, provider)
     const credential = GoogleAuthProvider.credentialFromError(error);
     // ...
   });});
+export{getAuth,onAuthStateChanged};

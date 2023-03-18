@@ -6,8 +6,7 @@ import {
   onSnapshot,query,orderBy,updateDoc,
   serverTimestamp
 } from 'firebase/firestore'
-
-
+import { onAuthStateChanged,getAuth } from './firebase.js';
 const firebaseConfig = {
   apiKey: "AIzaSyCmvBcRblmn4O0yx1UAetfPnyMRgqC8C-4",
   authDomain: "web3storage-5f50b.firebaseapp.com",
@@ -19,8 +18,17 @@ const firebaseConfig = {
   measurementId: "G-ELP48BVPP3"
 };
 
+
 //firebase part
 const app = initializeApp(firebaseConfig);
+
+//assigning authentication
+const auth = getAuth();
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    var uid = user.uid;
+
 
 //init services
 const db = getFirestore()
@@ -39,7 +47,16 @@ onSnapshot(q, (snapshot) => {
   })
   console.log(W3Data);
 })
-
+let data = doc.data();
+let row = `<tr>
+              <td>${data.NAME}</td>
+              <td id="copy">${data.NAME}<i class="fa-regular fa-clipboard" id="clipboard"></i></td>
+              <td>${data.NAME}</td>
+              <td>${data.NAME}</td>
+              <td>${data.NAME}</td>
+              <td><i class="fa-solid fa-download"></i></td>
+              <td><i class="fa-solid fa-trash"></i></td>
+            </tr>`
 function getAccessToken () {
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDc1Yjc3RThhNmRCMTNlNjhmZThlMUMwMzEwMDk4QUNlNEZFN2RBNWEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzYxOTk5Nzk1MDEsIm5hbWUiOiJ3ZWIzIn0.IUPdIPd94UXhLK8HWzyeZ7rDLFtzj2DWmAlm0t8LDkM";
     return token
@@ -51,7 +68,7 @@ function makeStorageClient () {
 const upload = document.getElementById("fileupload");
 const reader = new FileReader();
 
-upload.addEventListener('click',(e)=>{
+upload?.addEventListener('click',(e)=>{
     e.preventDefault();
     storefilesinW3andFirebase();
 });
@@ -89,10 +106,11 @@ for (const file of files) {
   const info = await client.status(rootCid);
   console.log(`value 1 :${info.cid} value 2:${info.dagSize} ${info.created}`);
       //adding documents
-      await updateDoc(doc(colRef, "Username"), {
+      await updateDoc(doc(colRef, uid), {
         SIZE:formatBytes(file.size),
         NAME:file.name,
-        CREATED:info.created.slice(0,9)
+        CREATED:info.created.slice(0,9),
+        STORAGEPROVIDERS:'Sample'
       })
   console.log(`${file.cid} ${file.name} ${file.size}`);
 }
@@ -106,7 +124,7 @@ async function storefilesinW3andFirebase(){
     const CID = await StoreFiles(file);
 
     //adding documents
-    await setDoc(doc(colRef, "Username"), {
+    await setDoc(doc(colRef, uid), {
       CID:CID,
       CREATEDAT:serverTimestamp(),
       NAME:"filename"
@@ -150,7 +168,7 @@ function formatBytes(bytes, decimals = 2) {
 
 //copy to clipboard
 const copy = document.getElementById("clipboard");
-copy.addEventListener('click',(e)=>{
+copy?.addEventListener('click',(e)=>{
     e.preventDefault();
     copyText();
 });
@@ -166,3 +184,5 @@ function copyText() {
   // Alert the copied text
   alert("Copied the text: " + copyText);
 }
+}
+});
