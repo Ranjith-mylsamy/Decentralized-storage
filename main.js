@@ -11,6 +11,9 @@ if(user==1){
 else{
     icon.classList.remove('fa-arrow-right-from-bracket');
 }
+
+/* terms and conditions */
+
 let popup = document.getElementById("popup");
 function openPopup(){
     popup.classList.add("open-popup");
@@ -19,6 +22,15 @@ function closePopup(){
     popup.classList.remove("open-popup");
 }
 
+/*password encryptor*/
+
+let keypopup = document.getElementById("keypopup");
+function openkeyPopup(){
+    popup.classList.add("open-keypopup");
+}
+function closekeyPopup(){
+    popup.classList.remove("open-keypopup");
+}
 // let id = (id) => document.getElementById(id);
 // let classes = (classes) => document.getElementsByClassName(classes);
 

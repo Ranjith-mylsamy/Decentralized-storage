@@ -36,7 +36,7 @@
             <label for="myfile" class="upload-button" onchange="encrypt(this)">Choose file</label>
             <input type="file" id="myfile" name="myfile"><br><br>
             <input type="submit" id="fileupload" class="upload-button" value="Upload">
-            <input type="reset" class="upload-button">
+            <input type="reset" class="upload-button"  onclick="openkeyPopup()">
         </form>
     </div>
     <div class="content-table">
@@ -58,6 +58,23 @@
     </div>
 </div>
 </section>
+<div class="keypopup" id="popup">
+    <i class="fa-solid fa-key"></i>
+    <h2>File encryptor</h2>
+    <p>
+        Please enter the key to encrypt your file.
+        <span>Remember the file cannot be recovered,
+              if the key is forgotten !
+        </span>
+    </p>
+    <form>
+        <input type="text" id="key" placeholder="password" class="box">
+        <h1 class="store-now" onclick="closekeyPopup()">
+            <a href="#" class="button">
+            <span>Encrypt</span>
+        </h1>
+    </form>
+</div>
 <!--home section ends-->
 <script src="./dist/bundle.js"></script>
 <script src="./main.js"></script>
