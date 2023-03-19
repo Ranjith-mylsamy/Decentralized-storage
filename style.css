@@ -1079,6 +1079,34 @@ thead th
 {
 	background-color: #353839;
 }
+#wait{
+	font-style: italic;
+	text-transform: uppercase;
+	color: transparent;
+	-webkit-text-stroke: #fff;
+	-webkit-text-stroke-width: 0.5px;
+	text-shadow: 5px 5px 20px #2962ff;
+	transition: all 0.5s ease-in-out;
+	text-align: center;
+    font-size: 4rem;
+    padding:0.5rem;
+	letter-spacing: 0.2em;
+	animation: flicker 0.5s ease-in-out infinite alternate;
+}
+#wait:hover {
+    color: #fff;
+}
+@keyframes flicker {
+	0% {
+		opacity: 0.5;
+		text-shadow: 2px 2px 10px #2962ff;
+	}
+	100% {
+		opacity: 1;
+		text-shadow: 2px 2px 20px #2962ff;
+	}
+}
+
 tbody tr:hover{
     background-color: rgba(255,255,255,0.3);
 }

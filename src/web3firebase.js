@@ -28,6 +28,7 @@ const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
     var userid = user.uid;
+    window.stop();
 
 
 //init services
@@ -157,6 +158,15 @@ async function storefilesinW3andFirebase()
 //     console.log("Document has been deleted");
 //   })
 // })
+
+//function to reset table at every upload
+function resettable () {
+  let row = `<tr>
+                <td colspan="7" id="wait">Content is loading ....</td>
+              </tr>`
+  let table = document.getElementById('tabledata');
+  table.innerHTML += row;
+  }
 
 // function to format size
 function formatBytes(bytes, decimals = 2) {
