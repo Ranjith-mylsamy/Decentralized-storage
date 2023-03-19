@@ -28,8 +28,19 @@ const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
     var userid = user.uid;
+    if(userid != null)
+    {
+      var userval = 1 ;
+    } 
+    var location = window.location.pathname;
+    if(location == "/Dstorage/uploadcontent.html")
+    {
+      var locationval = 1;
+    }
+    if((userval) && (locationval))
+    {
     window.stop();
-
+    }
 
 //init services
 const db = getFirestore()
@@ -53,7 +64,7 @@ onSnapshot(q, (snapshot) => {
                   <td>${data.SIZE}</td>
                   <td>${data.CREATED}</td>
                   <td><i class="fa-solid fa-download"></i></td>
-                  <td><i class="fa-solid fa-trash"></i></td>
+                  <td><i class="fa-solid fa-trash" id="deletetd"></i></td>
                 </tr>`
     let table = document.getElementById('tabledata')
     table.innerHTML += row;
@@ -110,7 +121,7 @@ async function retrieveFiles (rootCid)
       const info = await client.status(rootCid);
       console.log(`value 1 :${info.cid} value 2:${info.dagSize} ${info.created}`);
           //adding documents
-          await updateDoc(doc(colRef, 'sample'), 
+          await updateDoc(doc(colRef, rootCid), 
           {
             SIZE:formatBytes(file.size),
             NAME:file.name,
@@ -123,10 +134,10 @@ async function retrieveFiles (rootCid)
 
 async function storefilesinW3andFirebase()
 {
-    const file = document.querySelector('input[type=file]').files;
-    const length = file.length;
-    if(length>0)
-    {
+  const file = document.querySelector('input[type=file]').files;
+  const length = file.length;
+  if(length>0)
+  {
     const CID = await StoreFiles(file);
 
     //adding documents
@@ -139,25 +150,20 @@ async function storefilesinW3andFirebase()
       console.log("Document has been added");
     })
     console.log(`file is stored successfully ${CID}`);
-    }
-    else{
-        let rootCid = "bafybeifhl76id3tzuxrdbzkbk3ek7wavygmztcobkaauxhif4c4m5dvwc4";
-        const rCID = retrieveFiles (rootCid);
-        console.log("Please select the File");
-    }
+    let rootCid = CID;
+    console.log(rootCid);
+    const rCID = retrieveFiles (rootCid);
+    console.log("Please select the File");
+  }
 };
 
 
 // deleting documents
-// const deleteW3Data = document.querySelector('.delete');
-// deleteW3Data.addEventListener('click',(e)=>{
-//   e.preventDefault()
-//   const docRef = doc(db,'W3Data','Enter-the-Id')
-//   deleteDoc(docRef)
-//   .then(()=>{
-//     console.log("Document has been deleted");
-//   })
-// })
+const deleteW3Data = document.getElementById('deletetd');
+deleteW3Data?.addEventListener('click',(e)=>{
+  e.preventDefault()
+  console.log("clicked");
+})
 
 //function to reset table at every upload
 function resettable () {
@@ -201,3 +207,31 @@ function copyText() {
 }
 }
 });
+
+//delete doc
+const deletedoc = document.querySelector(".deletetd");
+deletedoc?.addEventListener('click',(e)=>{
+  e.preventDefault();
+  console.log("clicked");
+  deletedocfile();
+});
+
+// function deletedocfile() {
+//   //Get the delete table data
+//   var deletedoc = document.getElementById("deletetd").innerText;
+//   console.log(`delete CID copied: ${deletedoc}`);
+
+//   //copy the text inside the text field
+//   navigator.clipboard.writeText(deletedoc);
+
+//   //Alert the copied text
+//   alert("copied the table data: " + deletedoc);
+
+//   // deleting documents
+//   const deleteCid = deletedoc;
+//   const docRef = doc(db ,userid ,deleteCid)
+//   deleteDoc(docRef)
+//   .then(()=>{
+//     console.log("Document has been deleted");
+//   })
+// }
