@@ -51,26 +51,81 @@ const colRef = collection(db, userid)
 //queries
 const q = query(colRef,orderBy('CREATEDAT','asc'))
 
+//function to update table
+function updatetable(){
+  let row = `<tr>
+  <td>${data.NAME}</td>
+  <td id="copy">${data.CID}<i class="fa-regular fa-clipboard" id="clipboard"></i></td>
+  <td>${data.STORAGEPROVIDERS}</td>
+  <td>${data.SIZE}</td>
+  <td>${data.CREATED}</td>
+  <td><i class="fa-solid fa-download"></i></td>
+  <td><i class="fa-solid fa-trash" id="deletetd" onclick="deletedoc()"></i></td>
+</tr>`;
+let table = document.getElementById('tabledata');
+table.innerHTML += row;
+}
+
+function nodata () {
+  let row = `<tr>
+                <td colspan="7"> no data found <td>
+              <tr>`;
+  let table = document.getElementById('tabledata');
+  table.innerHTML += row;
+}  
+
+function resettable () {
+  let row = `<tr id="datasample">
+                <td colspan="7" id="wait">Content is loading ....</td>
+              </tr>`
+  let table = document.getElementById('tabledata');
+  table.innerHTML += row;
+}
+
 //real time collection data
 onSnapshot(q, (snapshot) => {
   let userid = []
   snapshot.docs.forEach((doc) => {
     userid.push({ ...doc.data(),id:doc.id})
     let data = doc.data();
-    let row = `<tr>
-                  <td>${data.NAME}</td>
-                  <td id="copy">${data.CID}<i class="fa-regular fa-clipboard" id="clipboard"></i></td>
-                  <td>${data.STORAGEPROVIDERS}</td>
-                  <td>${data.SIZE}</td>
-                  <td>${data.CREATED}</td>
-                  <td><i class="fa-solid fa-download"></i></td>
-                  <td><i class="fa-solid fa-trash" id="deletetd"></i></td>
-                </tr>`
-    let table = document.getElementById('tabledata')
-    table.innerHTML += row;
+    if(data != null)
+    {
+      //function to reset table at every upload
+
+    //   let flag_err;
+    //   if(flag_err!=1)
+    //   {
+    //     console.log("I am here");
+    //   flag_err = 1;
+    // document.getElementById('datasample').remove();
+    //   }
+      // updatetable(data);
+    // let flag;
+    // if(flag==1){
+    // document.getElementById('datam').remove();
+    // }
+    // flag=1;
+    let row = `<tr id="datam">
+  <td>${data.NAME}</td>
+  <td id="copy">${data.CID}<i class="fa-regular fa-clipboard" id="clipboard"></i></td>
+  <td>${data.STORAGEPROVIDERS}</td>
+  <td>${data.SIZE}</td>
+  <td>${data.CREATED}</td>
+  <td><i class="fa-solid fa-download"></i></td>
+  <td><i class="fa-solid fa-trash" id="deletetd" onclick="deletedoc()"></i></td>
+</tr>`;
+let table = document.getElementById('tabledata');
+table.innerHTML += row;
+    }
+    else
+    {
+      nodata();
+    }
   })
+
   console.log(userid);
 })
+document.getElementById('dataloader').remove();
 function getAccessToken () {
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDc1Yjc3RThhNmRCMTNlNjhmZThlMUMwMzEwMDk4QUNlNEZFN2RBNWEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzYxOTk5Nzk1MDEsIm5hbWUiOiJ3ZWIzIn0.IUPdIPd94UXhLK8HWzyeZ7rDLFtzj2DWmAlm0t8LDkM";
     return token
@@ -157,22 +212,45 @@ async function storefilesinW3andFirebase()
   }
 };
 
+// //delete doc
+// function deletedoc(){
+// const deletedoc = document.getElementById("deletetd");
+// deletedoc?.addEventListener('click',(e)=>{
+//   e.preventDefault();
+//   console.log("clicked");
+//   deletedocfile();
+// });
+// }
+
+// // Get the delete table data
+// function deletedocfile() {
+
+//   var deletedoc = document.getElementById("deletetd").innerText;
+//   console.log(`delete CID copied: ${deletedoc}`);
+
+//   //copy the text inside the text field
+//   navigator.clipboard.writeText(deletedoc);
+
+//   //Alert the copied text
+//   alert("copied the table data: " + deletedoc);
+
+//   // deleting documents
+//   const deleteCid = deletedoc;
+//   const docRef = doc(db ,userid ,deleteCid)
+//   deleteDoc(docRef)
+//   .then(()=>{
+//     console.log("Document has been deleted");
+//   })
+// }
 
 // deleting documents
-const deleteW3Data = document.getElementById('deletetd');
-deleteW3Data?.addEventListener('click',(e)=>{
-  e.preventDefault()
-  console.log("clicked");
-})
+// const deleteW3Data = document.getElementById('deletetd');
+// deleteW3Data?.addEventListener('click',(e)=>{
+//   e.preventDefault()
+//   console.log("clicked");
+// })
 
-//function to reset table at every upload
-function resettable () {
-  let row = `<tr>
-                <td colspan="7" id="wait">Content is loading ....</td>
-              </tr>`
-  let table = document.getElementById('tabledata');
-  table.innerHTML += row;
-  }
+
 
 // function to format size
 function formatBytes(bytes, decimals = 2) {
@@ -207,31 +285,3 @@ function copyText() {
 }
 }
 });
-
-//delete doc
-const deletedoc = document.querySelector(".deletetd");
-deletedoc?.addEventListener('click',(e)=>{
-  e.preventDefault();
-  console.log("clicked");
-  deletedocfile();
-});
-
-// function deletedocfile() {
-//   //Get the delete table data
-//   var deletedoc = document.getElementById("deletetd").innerText;
-//   console.log(`delete CID copied: ${deletedoc}`);
-
-//   //copy the text inside the text field
-//   navigator.clipboard.writeText(deletedoc);
-
-//   //Alert the copied text
-//   alert("copied the table data: " + deletedoc);
-
-//   // deleting documents
-//   const deleteCid = deletedoc;
-//   const docRef = doc(db ,userid ,deleteCid)
-//   deleteDoc(docRef)
-//   .then(()=>{
-//     console.log("Document has been deleted");
-//   })
-// }

@@ -51,17 +51,11 @@
                     <th>Download</th>
                     <th>Delete</th>
                 </tr>
-                <tr>
-                    <td>${data.NAME}</td>
-                    <td id="copy">${data.CID}<i class="fa-regular fa-clipboard" id="clipboard"></i></td>
-                    <td>${data.STORAGEPROVIDERS}</td>
-                    <td>${data.SIZE}</td>
-                    <td>${data.CREATED}</td>
-                    <td><i class="fa-solid fa-download"></i></td>
-                    <td><i class="fa-solid fa-trash" id="deletetd"></i></td>
-                  </tr>
             </thead>
             <tbody id="tabledata">
+                <tr id="dataloader">
+                    <td colspan="7" id="wait">Content is loading ....</td>
+                </tr>
             </tbody>
         </table>
     </div>
