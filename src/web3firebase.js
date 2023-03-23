@@ -82,6 +82,61 @@ function resettable () {
   table.innerHTML += row;
 }
 
+function filestatusgetter (upload) {
+  if(upload.pins.length==0)
+  {
+    return "Queued"
+  }
+  else
+  {
+    let status = "Pinned";
+    upload.pins.forEach((Element) => {
+      if(Element.status != "Pinned")
+      {
+        status = "Queued";
+      }
+    });
+    return status;
+  }
+}
+
+function filestorageprovider (filestatus,upload) {
+  if (filestatus == "Queued")
+  {
+    return filestatus
+  }
+  else 
+  {
+    let STORAGEPROVIDERS = "";
+    upload.deals.forEach((provider) =>{
+    STORAGEPROVIDERS += `<a href="https://filfox.info/en/deal/${provider.dealId}" target="blank">${provider.storageProvider} </a>`;
+    })
+    return STORAGEPROVIDERS; 
+  }
+}
+
+//function to get pin status and deals of filecoin
+async function listUploads (CID) {
+  const client = makeStorageClient()
+  for await (const upload of client.list()) {
+    if(CID == upload.cid)
+    {
+    console.log(upload);
+    let filestatus = filestatusgetter(upload);
+    console.log(filestatus);
+    let STORAGEPROVIDERS = filestorageprovider(filestatus,upload)
+    console.log(STORAGEPROVIDERS);
+    await updateDoc(doc(colRef, CID), 
+    {
+      STORAGEPROVIDERS:filestatus
+    })
+    }
+  }
+}
+
+let CID = "bafybeiffdcnc3bsnpc7wfr734lnpfcximdahcmuqnsavte7z2vs3rpl6pa";
+listUploads(CID);
+
 //real time collection data
 onSnapshot(q, (snapshot) => {
   let userid = []
@@ -206,9 +261,8 @@ async function storefilesinW3andFirebase()
     })
     console.log(`file is stored successfully ${CID}`);
     let rootCid = CID;
-    console.log(rootCid);
+    console.log(`${rootCid} :added to retrieve files`);
     const rCID = retrieveFiles (rootCid);
-    console.log("Please select the File");
   }
 };
 
