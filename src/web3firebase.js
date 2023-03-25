@@ -4,7 +4,8 @@ import {
   getFirestore,collection,getDocs,
   addDoc,deleteDoc,doc,setDoc,
   onSnapshot,query,orderBy,updateDoc,
-  serverTimestamp
+  serverTimestamp,
+  getDoc , getCountFromServer
 } from 'firebase/firestore'
 import { onAuthStateChanged,getAuth } from './firebase.js';
 const firebaseConfig = {
@@ -45,6 +46,7 @@ onAuthStateChanged(auth, (user) => {
 //init services
 const db = getFirestore()
 
+
 //collection ref
 const colRef = collection(db, userid)
 
@@ -52,19 +54,19 @@ const colRef = collection(db, userid)
 const q = query(colRef,orderBy('CREATEDAT','asc'))
 
 //function to update table
-function updatetable(){
-  let row = `<tr>
-  <td>${data.NAME}</td>
-  <td id="copy">${data.CID}<i class="fa-regular fa-clipboard" id="clipboard"></i></td>
-  <td>${data.STORAGEPROVIDERS}</td>
-  <td>${data.SIZE}</td>
-  <td>${data.CREATED}</td>
-  <td><i class="fa-solid fa-download"></i></td>
-  <td><i class="fa-solid fa-trash" id="deletetd" onclick="deletedoc()"></i></td>
-</tr>`;
-let table = document.getElementById('tabledata');
-table.innerHTML += row;
-}
+// function updatetable(){
+//   let row = `<tr>
+//   <td>${data.NAME}</td>
+//   <td id="copy">${data.CID}<i class="fa-regular fa-clipboard" id="clipboard"></i></td>
+//   <td>${data.STORAGEPROVIDERS}</td>
+//   <td>${data.SIZE}</td>
+//   <td>${data.CREATED}</td>
+//   <td><i class="fa-solid fa-download"></i></td>
+//   <td><i class="fa-solid fa-trash" id="deletetd" onclick="deletedoc()"></i></td>
+// </tr>`;
+// let table = document.getElementById('tabledata');
+// table.innerHTML += row;
+// }
 
 function nodata () {
   let row = `<tr>
@@ -144,51 +146,58 @@ async function listUploads (CID) {
   }
 }
 
-
-
 //real time collection data
-onSnapshot(q, (snapshot) => {
+onSnapshot(q, (snapshot) => 
+{
   let userid = []
-  snapshot.docs.forEach((doc) => {
+  let CIDarray = []
+  snapshot.docs.forEach((doc) => 
+  {
     userid.push({ ...doc.data(),id:doc.id})
     let data = doc.data();
     if(data != null)
     {
-      //function to reset table at every upload
-
-    //   let flag_err;
-    //   if(flag_err!=1)
-    //   {
-    //     console.log("I am here");
-    //   flag_err = 1;
-    // document.getElementById('datasample').remove();
-    //   }
-      // updatetable(data);
-    // let flag;
-    // if(flag==1){
-    // document.getElementById('datam').remove();
-    // }
-    // flag=1;
-    let row = `<tr id="datam">
-  <td>${data.NAME}</td>
-  <td id="copy">${data.CID}<i class="fa-regular fa-clipboard" id="clipboard"></i></td>
-  <td><a href="https://filfox.info/en/deal/${data.DEAL_ID}" target="blank">${data.STORAGEPROVIDERS} </a></td>
-  <td>${data.SIZE}</td>
-  <td>${data.CREATED}</td>
-  <td><i class="fa-solid fa-download"></i></td>
-  <td><i class="fa-solid fa-trash" id="deletetd" onclick="deletedoc()"></i></td>
-</tr>`;
-let table = document.getElementById('tabledata');
-table.innerHTML += row;
-    }
+        //function to reset table at every upload
+      //   let flag_err;
+      //   if(flag_err!=1)
+      //   {
+      //     console.log("I am here");
+      //   flag_err = 1;
+      // document.getElementById('datasample').remove();
+      //   }
+        // updatetable(data);
+      // let flag;
+      // if(flag==1){
+      // document.getElementById('datam').remove();
+      // }
+      // flag=1;
+      let row = `<tr id="datam">
+                    <td>${data.NAME}</td>
+                    <td id="copy">${data.CID}<i class="fa-regular fa-clipboard" id="clipboard"></i></td>
+                    <td><a href="https://filfox.info/en/deal/${data.DEAL_ID}" target="blank">${data.STORAGEPROVIDERS} </a></td>
+                    <td>${data.SIZE}</td>
+                    <td>${data.CREATED}</td>
+                    <td><i class="fa-solid fa-download"></i></td>
+                    <td><i class="fa-solid fa-trash" id=${data.CID}></i></td>
+                </tr>`;
+    let table = document.getElementById('tabledata');
+    table.innerHTML += row;
+    CIDarray.push(data.CID);
+   }
     else
     {
       nodata();
     }
   })
-
+  CIDarray.forEach((datacid)=>{
+    document.getElementById(datacid).addEventListener("click",function (e) {
+      deletedoc(e.target);
+      console.log(e.target);
+    })
+  })
   console.log(userid);
 })
+
 document.getElementById('dataloader').remove();
 function getAccessToken () {
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDc1Yjc3RThhNmRCMTNlNjhmZThlMUMwMzEwMDk4QUNlNEZFN2RBNWEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzYxOTk5Nzk1MDEsIm5hbWUiOiJ3ZWIzIn0.IUPdIPd94UXhLK8HWzyeZ7rDLFtzj2DWmAlm0t8LDkM";
@@ -275,30 +284,25 @@ async function storefilesinW3andFirebase()
   }
 };
 
-// //delete doc
-// function deletedoc(){
-// const deletedoc = document.getElementById("deletetd");
-// deletedoc?.addEventListener('click',(e)=>{
-//   e.preventDefault();
-//   console.log("clicked");
-//   deletedocfile();
-// });
-// }
+//delete doc
+function deletedoc(element){
+  console.log("clicked");
+}
 
 // // Get the delete table data
-// function deletedocfile() {
+// function deletedocfile(element) {
 
-//   var deletedoc = document.getElementById("deletetd").innerText;
-//   console.log(`delete CID copied: ${deletedoc}`);
+//   var deletedocelement = document.getElementById("deletetd").innerText;
+//   console.log(`delete CID copied: ${deletedocelement}`);
 
 //   //copy the text inside the text field
-//   navigator.clipboard.writeText(deletedoc);
+//   navigator.clipboard.writeText(deletedocelement);
 
 //   //Alert the copied text
-//   alert("copied the table data: " + deletedoc);
+//   alert("copied the table data: " + deletedocelement);
 
 //   // deleting documents
-//   const deleteCid = deletedoc;
+//   const deleteCid = deletedocelement;
 //   const docRef = doc(db ,userid ,deleteCid)
 //   deleteDoc(docRef)
 //   .then(()=>{

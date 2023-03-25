@@ -64,9 +64,9 @@ const logoutButton = document.getElementById("signout");
     console.log('user status changed: ',user);
     if(user)
     {
-      window.location = './index.html';
-//     const uid = user.uid;
-//     console.log(uid);
+    // window.location = './index.html';
+    //     const uid = user.uid;
+    //     console.log(uid);
     }
   })
   //google sign up
