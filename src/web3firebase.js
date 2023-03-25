@@ -46,6 +46,26 @@ onAuthStateChanged(auth, (user) => {
 //init services
 const db = getFirestore()
 
+//collection ref for user counting
+const docRefuser = doc(db,"ListofCollection","users")
+
+//regular updation of userid in database
+async function usersCount (userid){
+  await setDoc(doc(db, "ListofCollection", userid), {
+    user:userid
+  });
+}
+usersCount(userid)
+
+const Usercoll = query(collection(db, "ListofCollection"));
+const realtimeusercoll = onSnapshot(Usercoll, (querySnapshot) => {
+const Usercollection = [];
+querySnapshot.forEach((doc) => {
+Usercollection.push(doc.data().users);
+length = Usercollection.length
+});
+document.getElementById("userscount").innerHTML = length;
+});
 
 //collection ref
 const colRef = collection(db, userid)
