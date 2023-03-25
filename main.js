@@ -31,6 +31,10 @@ function openkeyPopup(){
 function closekeyPopup(){
     popup.classList.remove("open-keypopup");
 }
+
+function cb(response) {
+    document.getElementById('visits').innerText = response.value;
+}
 // let id = (id) => document.getElementById(id);
 // let classes = (classes) => document.getElementsByClassName(classes);
 

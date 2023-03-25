@@ -1124,6 +1124,10 @@ td{
     position: relative;
     text-align:center;
 }
+td a{
+    color:white;
+    text-decoration: underline;
+}
 tbody td:hover:before{
     content: "";
     position: absolute;

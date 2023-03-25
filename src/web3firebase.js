@@ -100,18 +100,28 @@ function filestatusgetter (upload) {
   }
 }
 
-function filestorageprovider (filestatus,upload) {
+function filestorageprovider (filestatus,upload,CID) {
   if (filestatus == "Queued")
   {
     return filestatus
   }
   else 
   {
-    let STORAGEPROVIDERS = "";
-    upload.deals.forEach((provider) =>{
-    STORAGEPROVIDERS += `<a href="https://filfox.info/en/deal/${provider.dealId}" target="blank">${provider.storageProvider} </a>`;
-    })
-    return STORAGEPROVIDERS; 
+    if(upload.deals.length != 0)
+    {
+      let STORAGEPROVIDERS = "";
+      upload.deals.forEach((provider) =>{
+        setDoc(doc(colRef, CID), {
+          DEAL_ID:provider.dealId
+        })
+        .then(()=>{
+          console.log("Document has been added");
+        })
+        STORAGEPROVIDERS += provider.storageProvider ;
+      })
+      return STORAGEPROVIDERS; 
+    }
+    return filestatus; 
   }
 }
 
@@ -124,18 +134,17 @@ async function listUploads (CID) {
     console.log(upload);
     let filestatus = filestatusgetter(upload);
     console.log(filestatus);
-    let STORAGEPROVIDERS = filestorageprovider(filestatus,upload)
+    let STORAGEPROVIDERS = filestorageprovider(filestatus,upload,CID)
     console.log(STORAGEPROVIDERS);
     await updateDoc(doc(colRef, CID), 
     {
-      STORAGEPROVIDERS:filestatus
+      STORAGEPROVIDERS:STORAGEPROVIDERS
     })
     }
   }
 }
 
-let CID = "bafybeiffdcnc3bsnpc7wfr734lnpfcximdahcmuqnsavte7z2vs3rpl6pa";
-listUploads(CID);
+
 
 //real time collection data
 onSnapshot(q, (snapshot) => {
@@ -163,7 +172,7 @@ onSnapshot(q, (snapshot) => {
     let row = `<tr id="datam">
   <td>${data.NAME}</td>
   <td id="copy">${data.CID}<i class="fa-regular fa-clipboard" id="clipboard"></i></td>
-  <td>${data.STORAGEPROVIDERS}</td>
+  <td><a href="https://filfox.info/en/deal/${data.DEAL_ID}" target="blank">${data.STORAGEPROVIDERS} </a></td>
   <td>${data.SIZE}</td>
   <td>${data.CREATED}</td>
   <td><i class="fa-solid fa-download"></i></td>
