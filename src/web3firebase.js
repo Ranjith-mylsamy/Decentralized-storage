@@ -217,11 +217,29 @@ onSnapshot(q, (snapshot) =>
       console.log(datacid);
     })
   })
-
+  copydata.forEach((copydatacid)=>{
+    console.log(copydatacid)
+    document.getElementById(copydatacid)?.addEventListener("click",function (e) {
+      copyText(copydatacid);
+      console.log();
+    })
+  })
   console.log(userid);
 })
 
+// copy to clipboard
 
+function copyText(copydatacid) {
+  // Get the text field
+  var copyText = document.getElementById(`copy${copydatacid}`).innerText;
+  console.log("Text copied");
+
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText);
+
+  // Alert the copied text
+  alert("Copied the text: " + copyText);
+}
 
 //delete doc
 function deletedoc(deleteW3CID){
@@ -230,6 +248,7 @@ function deletedoc(deleteW3CID){
     deleteDoc(docRef)
     .then(()=>{
       console.log("Document has been deleted");
+      location.reload();
     })
 }
 
