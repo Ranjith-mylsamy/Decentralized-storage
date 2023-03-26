@@ -170,7 +170,8 @@ async function listUploads (CID) {
 onSnapshot(q, (snapshot) => 
 {
   let userid = []
-  let CIDarray = []
+  let deletedata = []
+  let copydata = []
   snapshot.docs.forEach((doc) => 
   {
     userid.push({ ...doc.data(),id:doc.id})
@@ -193,7 +194,7 @@ onSnapshot(q, (snapshot) =>
       // flag=1;
       let row = `<tr id="datam">
                     <td>${data.NAME}</td>
-                    <td id="copy">${data.CID}<i class="fa-regular fa-clipboard" id="clipboard"></i></td>
+                    <td id="copy${data.NAME}">${data.CID}<i class="fa-regular fa-clipboard" id=${data.NAME}></i></td>
                     <td><a href="https://filfox.info/en/deal/${data.DEAL_ID}" target="blank">${data.STORAGEPROVIDERS} </a></td>
                     <td>${data.SIZE}</td>
                     <td>${data.CREATED}</td>
@@ -202,21 +203,35 @@ onSnapshot(q, (snapshot) =>
                 </tr>`;
     let table = document.getElementById('tabledata');
     table.innerHTML += row;
-    CIDarray.push(data.CID);
+    deletedata.push(data.CID);
+    copydata.push(data.NAME);
    }
     else
     {
       nodata();
     }
   })
-  CIDarray.forEach((datacid)=>{
-    document.getElementById(datacid).addEventListener("click",function (e) {
-      deletedoc(e.target);
-      console.log(e.target);
+  deletedata.forEach((datacid)=>{
+    document.getElementById(datacid)?.addEventListener("click",function (e) {
+      deletedoc(datacid);
+      console.log(datacid);
     })
   })
+
   console.log(userid);
 })
+
+
+
+//delete doc
+function deletedoc(deleteW3CID){
+    // deleting documents
+    const docRef = doc(db ,userid ,deleteW3CID)
+    deleteDoc(docRef)
+    .then(()=>{
+      console.log("Document has been deleted");
+    })
+}
 
 document.getElementById('dataloader').remove();
 function getAccessToken () {
@@ -304,41 +319,6 @@ async function storefilesinW3andFirebase()
   }
 };
 
-//delete doc
-function deletedoc(element){
-  console.log("clicked");
-}
-
-// // Get the delete table data
-// function deletedocfile(element) {
-
-//   var deletedocelement = document.getElementById("deletetd").innerText;
-//   console.log(`delete CID copied: ${deletedocelement}`);
-
-//   //copy the text inside the text field
-//   navigator.clipboard.writeText(deletedocelement);
-
-//   //Alert the copied text
-//   alert("copied the table data: " + deletedocelement);
-
-//   // deleting documents
-//   const deleteCid = deletedocelement;
-//   const docRef = doc(db ,userid ,deleteCid)
-//   deleteDoc(docRef)
-//   .then(()=>{
-//     console.log("Document has been deleted");
-//   })
-// }
-
-// deleting documents
-// const deleteW3Data = document.getElementById('deletetd');
-// deleteW3Data?.addEventListener('click',(e)=>{
-//   e.preventDefault()
-//   console.log("clicked");
-// })
-
-
-
 // function to format size
 function formatBytes(bytes, decimals = 2) {
   if (!+bytes) return '0 Bytes'
@@ -352,23 +332,5 @@ function formatBytes(bytes, decimals = 2) {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
 }
 
-//copy to clipboard
-const copy = document.getElementById("clipboard");
-copy?.addEventListener('click',(e)=>{
-    e.preventDefault();
-    copyText();
-});
-
-function copyText() {
-  // Get the text field
-  var copyText = document.getElementById("copy").innerText;
-  console.log("Text copied");
-
-   // Copy the text inside the text field
-  navigator.clipboard.writeText(copyText);
-
-  // Alert the copied text
-  alert("Copied the text: " + copyText);
-}
 }
 });
