@@ -73,21 +73,6 @@ const colRef = collection(db, userid)
 //queries
 const q = query(colRef,orderBy('CREATEDAT','asc'))
 
-//function to update table
-// function updatetable(){
-//   let row = `<tr>
-//   <td>${data.NAME}</td>
-//   <td id="copy">${data.CID}<i class="fa-regular fa-clipboard" id="clipboard"></i></td>
-//   <td>${data.STORAGEPROVIDERS}</td>
-//   <td>${data.SIZE}</td>
-//   <td>${data.CREATED}</td>
-//   <td><i class="fa-solid fa-download"></i></td>
-//   <td><i class="fa-solid fa-trash" id="deletetd" onclick="deletedoc()"></i></td>
-// </tr>`;
-// let table = document.getElementById('tabledata');
-// table.innerHTML += row;
-// }
-
 function nodata () {
   let row = `<tr>
                 <td colspan="7"> no data found <td>
@@ -107,7 +92,8 @@ function resettable () {
 function filestatusgetter (upload) {
   if(upload.pins.length==0)
   {
-    return "Queued"
+    let status = "Queued"
+    return status;
   }
   else
   {
@@ -178,27 +164,13 @@ onSnapshot(q, (snapshot) =>
     let data = doc.data();
     if(data != null)
     {
-        //function to reset table at every upload
-      //   let flag_err;
-      //   if(flag_err!=1)
-      //   {
-      //     console.log("I am here");
-      //   flag_err = 1;
-      // document.getElementById('datasample').remove();
-      //   }
-        // updatetable(data);
-      // let flag;
-      // if(flag==1){
-      // document.getElementById('datam').remove();
-      // }
-      // flag=1;
       let row = `<tr id="datam">
                     <td>${data.NAME}</td>
-                    <td id="copy${data.NAME}">${data.CID}<i class="fa-regular fa-clipboard" id=${data.NAME}></i></td>
+                    <td id="copy${data.NAME}"><a href="https://${data.CID}.ipfs.dweb.link/" target="blank">${data.CID}</a><i class="fa-regular fa-clipboard" id=${data.NAME}></i></td>
                     <td><a href="https://filfox.info/en/deal/${data.DEAL_ID}" target="blank">${data.STORAGEPROVIDERS} </a></td>
                     <td>${data.SIZE}</td>
                     <td>${data.CREATED}</td>
-                    <td><i class="fa-solid fa-download"></i></td>
+                    <td><a href="https://${data.CID}.ipfs.dweb.link/${data.NAME}" target="blank" download><i class="fa-solid fa-download"></i></a></td>
                     <td><i class="fa-solid fa-trash" id=${data.CID}></i></td>
                 </tr>`;
     let table = document.getElementById('tabledata');
@@ -212,16 +184,15 @@ onSnapshot(q, (snapshot) =>
     }
   })
   deletedata.forEach((datacid)=>{
+    listUploads(datacid);
     document.getElementById(datacid)?.addEventListener("click",function (e) {
-      deletedoc(datacid);
-      console.log(datacid);
+    deletedoc(datacid);
+    console.log(datacid);
     })
   })
   copydata.forEach((copydatacid)=>{
-    console.log(copydatacid)
     document.getElementById(copydatacid)?.addEventListener("click",function (e) {
       copyText(copydatacid);
-      console.log();
     })
   })
   console.log(userid);
@@ -248,7 +219,7 @@ function deletedoc(deleteW3CID){
     deleteDoc(docRef)
     .then(()=>{
       console.log("Document has been deleted");
-      location.reload();
+      window.location.reload();
     })
 }
 
@@ -310,6 +281,9 @@ async function retrieveFiles (rootCid)
             CREATED:info.created.slice(0,9),
             STORAGEPROVIDERS:'Sample'
           })
+          .then (() => {
+            window.location.reload();
+          })
       console.log(`${file.cid} ${file.name} ${file.size}`);
     }
 }
@@ -350,6 +324,5 @@ function formatBytes(bytes, decimals = 2) {
 
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
 }
-
 }
 });
