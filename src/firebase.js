@@ -36,10 +36,10 @@ const firebaseConfig = {
   
 //   logging in and out
 const logoutButton = document.getElementById("signout");
-  logoutButton.addEventListener('click',() => {
+  logoutButton?.addEventListener('click',() => {
     signOut(auth)
     .then(()=>{
-        // console.log('The user is logged out');
+        console.log('The user is logged out');
     })
     .catch((err) => {
         console.log(err.message);
