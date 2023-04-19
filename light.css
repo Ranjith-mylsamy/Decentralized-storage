@@ -592,11 +592,13 @@ header #login img{
     font-size:1.7rem;
     color:#111;                  /* change req */
     background:none;
-    text-transform: none;
     border-radius: 10px;
-    text-transform:uppercase;
+    text-transform:none;
     font-weight: bolder;
     padding:1rem;
+}
+.sec-04 .row form .box::placeholder{
+    text-transform: capitalize;
 }
 .sec-04 .row form .box:focus{
     border:1px solid;
@@ -611,9 +613,10 @@ header #login img{
     border-radius: 10px;
     background:none;
     border:.1rem solid #111;                /* change req */
-    text-transform:uppercase;
-    font-weight: bolder;
+    text-transform:none;
+    font-size:2rem;
     padding:1rem;
+    color:#111;
 }
 .sec-04 .row form .box-address:focus {
     border: 1px solid;
@@ -1075,8 +1078,8 @@ table {
     border-radius: 10px;
 }
 .fa-clipboard{
-    position:fixed;
-    left:30%;
+    position:absolute;
+    right:0%;
 }
 .fa-download{
     color:#00ff08b6;

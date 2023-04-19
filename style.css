@@ -584,11 +584,13 @@ header #login img{
     font-size:1.7rem;
     color:#fff;
     background:none;
-    text-transform: none;
     border-radius: 10px;
-    text-transform:uppercase;
+    text-transform:none;
     font-weight: bolder;
     padding:1rem;
+}
+.sec-04 .row form .box::placeholder{
+    text-transform: capitalize;
 }
 .sec-04 .row form .box:focus{
     border:1px solid;
@@ -603,9 +605,10 @@ header #login img{
     border-radius: 10px;
     background:none;
     border:.1rem solid #eee;
-    text-transform:uppercase;
-    font-weight: bolder;
+    text-transform:none;
+    font-size: 2rem;
     padding:1rem;
+    color:#fff;
 }
 .sec-04 .row form .box-address:focus {
     border: 1px solid;
@@ -1126,7 +1129,6 @@ td{
 }
 td a{
     color:white;
-    text-decoration: underline;
 }
 tbody td:hover:before{
     content: "";

@@ -83,9 +83,8 @@ const colRef = collection(db, userid)
 const q = query(colRef,orderBy('CREATEDAT','asc'))
 
 function nodata () {
-  console.log('here')
   let row = `<tr>
-                <td colspan="7"> no data found <td>
+                <td colspan="6"> no data found <td>
               <tr>`;
   let table = document.getElementById('tabledata');
   console.log(table)
@@ -169,7 +168,6 @@ onSnapshot(q, (snapshot) =>
   let userid = []
   let deletedata = []
   let copydata = []
-  console.log('in')
   snapshot.docs.forEach((doc) => 
   {
     userid.push({ ...doc.data(),id:doc.id})
@@ -191,10 +189,6 @@ onSnapshot(q, (snapshot) =>
     deletedata.push(data.CID);
     copydata.push(data.NAME);
    }
-    else
-    {
-      nodata();
-    }
   })
   deletedata.forEach((datacid)=>{
     listUploads(datacid);
@@ -208,6 +202,11 @@ onSnapshot(q, (snapshot) =>
       copyText(copydatacid);
     })
   })
+  var useridlength=userid.length;
+  if(useridlength==0)
+  {
+    nodata();
+  }
   console.log(userid);
 })
 
@@ -338,6 +337,7 @@ function formatBytes(bytes, decimals = 2) {
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
 }
 }
+
 else{
   nodata();
 }
