@@ -30,7 +30,7 @@ onAuthStateChanged(auth, (user) => {
   console.log('user-', user)
   if(user === null){
     let row = `<tr>
-                <td colspan="7"> no data found <td>
+                <td colspan="6"> no data found <td>
               <tr>`;
   let table = document.getElementById('tabledata');
   console.log(table)
