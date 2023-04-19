@@ -62,11 +62,11 @@ const logoutButton = document.getElementById("signout");
   //authentication changes
   onAuthStateChanged(auth,(user) => {
     console.log('user status changed: ',user);
-    if(user)
+    console.log(window.location.pathname, window.location.pathname === "/Dstorage/login.html")
+    if(user && window.location.pathname.match(/login\.html/gi))
     {
-    // window.location = './index.html';
-    //     const uid = user.uid;
-    //     console.log(uid);
+      console.log(window.location)
+      window.location = '/Dstorage/index.html'
     }
   })
   //google sign up

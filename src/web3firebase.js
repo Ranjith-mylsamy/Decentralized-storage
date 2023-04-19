@@ -27,6 +27,15 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
 onAuthStateChanged(auth, (user) => {
+  console.log('user-', user)
+  if(user === null){
+    let row = `<tr>
+                <td colspan="7"> no data found <td>
+              <tr>`;
+  let table = document.getElementById('tabledata');
+  console.log(table)
+  table.innerHTML = row;
+  }
   if (user) {
     var userid = user.uid;
     if(userid != null)
@@ -74,10 +83,12 @@ const colRef = collection(db, userid)
 const q = query(colRef,orderBy('CREATEDAT','asc'))
 
 function nodata () {
+  console.log('here')
   let row = `<tr>
                 <td colspan="7"> no data found <td>
               <tr>`;
   let table = document.getElementById('tabledata');
+  console.log(table)
   table.innerHTML += row;
 }  
 
@@ -158,10 +169,12 @@ onSnapshot(q, (snapshot) =>
   let userid = []
   let deletedata = []
   let copydata = []
+  console.log('in')
   snapshot.docs.forEach((doc) => 
   {
     userid.push({ ...doc.data(),id:doc.id})
     let data = doc.data();
+    console.log(data)
     if(data != null)
     {
       let row = `<tr id="datam">
@@ -279,7 +292,7 @@ async function retrieveFiles (rootCid)
             SIZE:formatBytes(file.size),
             NAME:file.name,
             CREATED:info.created.slice(0,9),
-            STORAGEPROVIDERS:'Sample'
+            STORAGEPROVIDERS:'Queued'
           })
           .then (() => {
             window.location.reload();
@@ -324,5 +337,8 @@ function formatBytes(bytes, decimals = 2) {
 
   return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
 }
+}
+else{
+  nodata();
 }
 });
